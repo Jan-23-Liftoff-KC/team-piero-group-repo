@@ -7,8 +7,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - NPM 6.14.17
 - Node 14.19.2
 
-## Team members
-Neal Doherty
+##Team members
+Thal Syhabout
+Ryan
+Franco
+Neal
 
 ## Development server
 
