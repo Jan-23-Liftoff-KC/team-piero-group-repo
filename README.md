@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Approximate Requirements
 
 - NPM 6.14.17
+- Create conflict
 - Node 14.19.2
 
 ## Development server
