@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Team members
 Neal Doherty
+Piero Pretto
 
 ## Development server
 
