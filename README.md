@@ -11,6 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Thal Syhabout
 Ryan
 Franco
+Neal
 
 ## Development server
 
