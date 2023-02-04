@@ -2,6 +2,7 @@ import { db } from "./firebase.init";
 import { ref, set, onValue, remove, update } from "firebase/database";
 
 class FireBaseService {
+    // takes a collection_name property and a collection payload to store a new or completely override an existing collection in firebase
     createCollection(collection_name: string, payload: any[]) {
       return new Promise((resolve, reject) => {
         const collectionRef = ref(db, '/' + collection_name)
@@ -14,7 +15,7 @@ class FireBaseService {
           });
       })
     }
-
+    // takes a collection_name property and returns that collection from firebase
     readCollection(collection_name: string) {
       return new Promise((resolve, reject) => {
         const collectionRef = ref(db, '/' + collection_name)
@@ -28,7 +29,7 @@ class FireBaseService {
         });
       });
     }
-
+    // takes a collection_name property and child_id to identify the child data that needs to be updated in an existing collection. Updates child node with payload to store a new or augment an existing collection child node in firebase
     updateCollection(collection_name: string, child_id: number, payload: any) {
       return new Promise((resolve, reject) => {
         const collectionChildRef = ref(db, '/' + collection_name + '/' + child_id)
@@ -41,7 +42,7 @@ class FireBaseService {
           });
       })
     }
-
+    // takes a collection_name property and deletes that collection from firebase
     deleteCollection(collection_name: string) {
       return new Promise((resolve, reject) => {
         const collectionRef = ref(db, '/' + collection_name)
