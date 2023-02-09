@@ -1,0 +1,27 @@
+<body>
+    <div>
+        <label>Search Recipes</label>
+        <input name="searchRecipe" id="searchRecipe" type="text">
+        <button (click)="onSubmit()">Submit</button>
+    </div>
+    <div name="results" id="results">
+        <!-- <p>{{ fullResponse }}</p> -->
+        <p>{{ fullResponse.count }}</p>
+        <p>{{ fullResponse.results[0].name }}</p>
+        <p>{{ recipes }}</p>
+    </div>
+    <div name="recipes" id="recipes" *ngFor="let recipe of recipes">
+        <ul>
+            <li>{{ recipe.name }}</li>
+            <li>
+                <ul name="ingredients" id="ingredients" *ngFor let >
+                    <li>{{ recipe.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<!-- result[0].sections[0].components[0].ingredient.name -->
+
+
