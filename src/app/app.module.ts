@@ -19,7 +19,8 @@ import { SearchRecipesService } from '../services/search-recipes.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [SearchRecipesService],
   bootstrap: [AppComponent]

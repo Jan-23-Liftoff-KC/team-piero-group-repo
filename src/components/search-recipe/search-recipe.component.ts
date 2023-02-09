@@ -13,9 +13,10 @@ import { RootObject, Result } from 'src/interfaces/recipes';
 export class SearchRecipeComponent {
 
   fullResponse: RootObject;
-  subscription: Object = null;
+  subscription: Object;
   recipes;
   ingredients = [];
+  recipeSearchTerm;
 
   constructor(private searchRecipeService: SearchRecipesService) {  } 
   
@@ -26,24 +27,11 @@ export class SearchRecipeComponent {
         this.fullResponse = resp;
         this.recipes = this.fullResponse.results;
 
-        
-        // for (let i = 0; i = this.recipes.length; i++) {
-        //   let ingredientsList = {};
-        //     for (let j = 0; j = this.recipes.sections[j].components.length)
-
-
-            // result[0].sections[0].components[0].ingredient.name
-
-
-
-        }
-
-      // }
-      )
+      console.log(this.recipeSearchTerm)
+      })
     };
 
 };
-
 
 
 

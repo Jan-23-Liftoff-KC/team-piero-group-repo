@@ -1,7 +1,7 @@
 <body>
     <div>
         <label>Search Recipes</label>
-        <input name="searchRecipe" id="searchRecipe" type="text">
+        <input [(ngModel)]="recipeSearchTerm" name="searchRecipe" id="searchRecipe" type="text">
         <button (click)="onSubmit()">Submit</button>
     </div>
     <div name="results" id="results">
