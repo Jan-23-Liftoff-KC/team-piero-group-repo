@@ -1,3 +1,7 @@
+// This is the JSON format for the objects returned from the Tasty API's
+// recipe/list endpoint.
+
+
 export class RootObject {
     count: number;
     results: Result[];

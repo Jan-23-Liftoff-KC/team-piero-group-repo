@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { RootObject } from 'src/interfaces/recipes';
+import { RootObject } from 'src/app/interfaces/recipes';
 import { Observable } from 'rxjs';
 
 

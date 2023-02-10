@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchRecipeComponent } from '../components/search-recipe/search-recipe.component'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchRecipeComponent } from './components/search-recipe/search-recipe.component'
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { SearchRecipesService } from '../services/search-recipes.service';
+import { SearchRecipesService } from './services/search-recipes.service';
 
 
 @NgModule({
@@ -19,7 +17,6 @@ import { SearchRecipesService } from '../services/search-recipes.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule,
     FormsModule
   ],
   providers: [SearchRecipesService],

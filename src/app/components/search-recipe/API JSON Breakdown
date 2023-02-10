@@ -1,8 +1,5 @@
-result[0].sections[0].components[0].ingredient.name
 
-
-
-result[recipe 1, recipe 2, recipe 3]
+result [recipe 1, recipe 2, recipe 3]
 
     recipe 1 [total_time_minutes, instructions[], tags[] name, description, sections[]]
 

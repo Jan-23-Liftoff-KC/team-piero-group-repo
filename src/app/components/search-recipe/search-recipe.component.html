@@ -9,6 +9,7 @@
         <p>{{ fullResponse.results[0].name }}</p>
         <p>{{ recipes }}</p>
     </div> -->
+    <p>Results returned: {{ resultsCount }}</p>
     <div name="recipes" id="recipes" *ngFor="let recipe of recipes">
         <ul>
             <li>{{ recipe.name }}</li>
