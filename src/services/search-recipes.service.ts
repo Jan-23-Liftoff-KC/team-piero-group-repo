@@ -17,17 +17,30 @@ export class SearchRecipesService {
     'x-rapidapi-key': '7c74d55e43msh895d92d3174837fp19733djsn47065daa1688'
   });
 
-  parameters = new HttpParams()
-    .set("q", "chicken")
-
-  getRecipes(): Observable<RootObject> {
+  getRecipes(searchTerm: string): Observable<RootObject> {
     return this.http
       .get<RootObject>('https://tasty.p.rapidapi.com/recipes/list?from=0&size=50&tags=under_30_minutes&', {
         headers: this.headers,
-        params: this.parameters
+        params: new HttpParams()
+        .set("q", searchTerm)
+        
+        // Need to add a variable that allows users to add tags to their searchTerm. Perhaps
+        // using a dropbox that lists available tags, or by using checkboxes.
+        .set("tags", "")
       })
-      // .toPromise;
   };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // options = {

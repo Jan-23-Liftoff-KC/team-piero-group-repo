@@ -17,58 +17,21 @@ export class SearchRecipeComponent {
   recipes;
   ingredients = [];
   recipeSearchTerm;
+  fetchResponse;
 
   constructor(private searchRecipeService: SearchRecipesService) {  } 
   
 
   onSubmit() {
-    this.subscription = this.searchRecipeService.getRecipes()
+    this.subscription = this.searchRecipeService.getRecipes(this.recipeSearchTerm)
       .subscribe(resp => {
         this.fullResponse = resp;
         this.recipes = this.fullResponse.results;
 
       console.log(this.recipeSearchTerm)
+      console.log(this.recipes)
       })
     };
 
-};
 
-
-
-    // this.searchRecipeService.getRecipes();
-
-      // .subscribe(
-      //   (resp => {
-      //     this.fullResponse = resp;
-      //     console.log(this.fullResponse);
-
-      //     return this.fullResponse
-      //   })
-      // );
-
-    // console.log(this.recipes);
-    // console.log(typeof (this.fullResponse))
-    // console.log(this.fullResponse);
-
-
-    // this.fullResponse = this.searchRecipeService.getRecipes();
-          // this.fullResponse
-
-
-
-  // onSubmit() {
-
-  //   this.searchRecipeService.getRecipes()
-  //     .subscribe( 
-  //       (resp: RootObject[]) => {
-  //         this.fullResponse = resp;
-  //         // this.fullResponse
-  //         console.log(this.fullResponse);
-
-  //         return this.fullResponse
-
-  //       })
-    
-  //   console.log(this.fullResponse);
-  //   console.log(typeof(this.fullResponse))
-  // };
+  };
