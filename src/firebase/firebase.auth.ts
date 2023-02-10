@@ -7,9 +7,9 @@ import {
   googleAuthProvider,
 } from "./firebase.init";
 
-export const startEmailLogin = (user, password) => {
+export const startEmailLogin = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
-    signInWithEmailAndPassword(auth, user, password).then(() => {
+    signInWithEmailAndPassword(auth, email, password).then(() => {
       resolve('Sign-in successful')
     }).catch((error) => {
       reject('An error happened')
@@ -17,9 +17,9 @@ export const startEmailLogin = (user, password) => {
   })
 };
 
-export const startCreateUserWithEmailLogin = (user, password) => {
+export const startCreateUserWithEmailLogin = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
-    createUserWithEmailAndPassword(auth, user, password).then(() => {
+    createUserWithEmailAndPassword(auth, email, password).then(() => {
       resolve('User creation successful')
     }).catch((error) => {
       reject('An error happened')
