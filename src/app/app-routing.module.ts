@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PantryComponent } from './components/pantry/pantry.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'recipes',
     component: RecipesComponent
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent
   }
   
 
