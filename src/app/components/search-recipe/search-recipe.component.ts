@@ -12,7 +12,6 @@ import { RootObject, Result } from 'src/app/interfaces/recipes';
 
 export class SearchRecipeComponent {
 
-  subscription: Object;
   recipes;
   resultsCount;
 
@@ -21,12 +20,15 @@ export class SearchRecipeComponent {
   ingredients = [];
   recipeSearchTerm;
   fetchResponse;
+  display = false;
+  instructions;
+
 
   constructor(private searchRecipeService: SearchRecipesService) {  } 
   
 
   onSubmit() {
-    this.subscription = this.searchRecipeService.getRecipes(this.recipeSearchTerm)
+    this.searchRecipeService.getRecipes(this.recipeSearchTerm)
       .subscribe(resp => {
         this.resultsCount = resp.count;
         this.recipes = resp.results;
@@ -35,6 +37,11 @@ export class SearchRecipeComponent {
       console.log(this.recipes)
       })
     };
+
+  showInstructions(selected):void{
+    this.display = true;    
+    this.instructions = selected['instructions'];
+  }
 
 
   };

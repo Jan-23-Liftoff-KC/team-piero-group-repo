@@ -1,7 +1,7 @@
 <body>
     <div>
         <label>Search Recipes</label>
-        <input [(ngModel)]="recipeSearchTerm" name="searchRecipe" id="searchRecipe" type="text">
+        <input [(ngModel)]="recipeSearchTerm" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
         <button (click)="onSubmit()">Submit</button>
     </div>
     <!-- <div name="results" id="results">
@@ -10,10 +10,19 @@
         <p>{{ recipes }}</p>
     </div> -->
     <p>Results returned: {{ resultsCount }}</p>
-    <div name="recipes" id="recipes" *ngFor="let recipe of recipes">
-        <ul>
-            <li>{{ recipe.name }}</li>
-        </ul>
+
+    <div class="row">
+        <div class="column" name="recipes" id="recipes" *ngFor="let recipe of recipes" (click)="showInstructions(recipe)">
+            <ul>
+                <li>{{ recipe.name }}</li>
+            </ul>
+        </div>
+        <div class="column" *ngIf="display">
+            <h2>Recipe Instructions:</h2>
+            <ol>
+            <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
+            </ol>
+        </div>
     </div>
 </body>
 
