@@ -10,9 +10,12 @@ import {
 export const startEmailLogin = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
     signInWithEmailAndPassword(auth, email, password).then(() => {
-      resolve('Sign-in successful')
+      resolve('Sign-in successful');
+      // this.router.navigate(['/login']);
     }).catch((error) => {
       reject('An error happened')
+      // this.router.navigate(['/sign-up']);
+
     });
   })
 };
