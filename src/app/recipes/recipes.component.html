@@ -3,6 +3,9 @@
     <button (click)="search(searchTerm.value);">Search</button>
  </div>
 
+ 
+ <child-search-recipe [originalRecipes]="recipes" (filterEvent)="filterResults()"></child-search-recipe>
+
 
 <div class="row">
     <div class = "column" *ngIf="recipes">
@@ -18,3 +21,4 @@
          </ol>
     </div>
   </div>
+

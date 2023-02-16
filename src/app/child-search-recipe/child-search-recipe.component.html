@@ -1,0 +1,43 @@
+<h5>Child Component</h5>
+<button (click)="callParentFilterResults()">Show Filters</button>
+
+
+<div  class="scrollbox" id="overlay" (click)="showFiltersOff()">
+
+    <form [formGroup]="filterForm">
+
+        <div class="boxList">
+
+            <h3>Cuisines</h3>
+
+            <ng-container *ngFor="let tag of apiTags.results" formArrayName="tags">
+
+                <div *ngIf="tag.type === 'cuisine'">
+
+                    <input type="checkbox" id="{{ tag.display_name }}" value="{{ tag.name }}" 
+                            (change)="addFilterTerm($event)">
+                    
+                    <label class="filterLabel" for="{{ tag.display_name }}" 
+                            (change)="addFilterTerm($event)">{{tag.display_name}}</label><br>
+                
+                </div>
+            </ng-container>  
+        </div>
+    </form>
+
+
+
+    <button id="filterApply" (click)="checkSearchTerms">Apply</button>
+
+<!--    <div class="boxList">
+            <h3>Appliances</h3>
+            <ng-container *ngFor="let tag of apiTags.results">
+                <div *ngIf="tag.type === 'appliance'">
+                    <input type="checkbox" id="{{ tag.display_name }}" value="{{ tag.name }}" (click)="addFilterTerm($event)">
+                    <label class="filterLabel" for="{{ tag.display_name }}" (click)="addFilterTerm($event)">{{ tag.display_name }}</label><br>
+                </div>
+            </ng-container>
+        </div>
+-->
+
+</div>

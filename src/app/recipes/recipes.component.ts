@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-recipe.component';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
+  // templateUrl: 'src/app/recipes/recipes.component.html',
   styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent implements OnInit {
@@ -63,4 +65,6 @@ export class RecipesComponent implements OnInit {
     this.display = true;    
     this.instructions = selected['instructions'];
   }
+
+  filterResults() {};
 }
