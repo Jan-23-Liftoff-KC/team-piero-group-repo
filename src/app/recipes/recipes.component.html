@@ -13,7 +13,10 @@
     </div>
     <div class = "column" *ngIf="display">
          <h2>Recipe Instructions:</h2>
-         <ol>
+         <form action="/button-type"> <button type="button" onclick="alert('Recipe Added to Favorites!')">
+          Favorite</button><br><br>
+          </form>
+          <ol>
            <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
          </ol>
     </div>
