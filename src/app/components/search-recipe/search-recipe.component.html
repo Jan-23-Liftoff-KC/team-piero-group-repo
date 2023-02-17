@@ -1,14 +1,10 @@
 <body>
     <div>
-        <label>Search Recipes</label>
+        <label>Search Recipes Component</label><br>
         <input [(ngModel)]="recipeSearchTerm" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
         <button (click)="onSubmit()">Submit</button>
     </div>
-    <!-- <div name="results" id="results">
-        <p>{{ fullResponse.count }}</p>
-        <p>{{ fullResponse.results[0].name }}</p>
-        <p>{{ recipes }}</p>
-    </div> -->
+
     <p>Results returned: {{ resultsCount }}</p>
 
     <div class="row">
