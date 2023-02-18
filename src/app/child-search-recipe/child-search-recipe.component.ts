@@ -14,8 +14,16 @@ export class ChildSearchRecipeComponent implements OnInit {
   @Input() originalRecipes;
   filteredRecipes;
   apiTags = apiTags;
+  tagCategories = [
+    'cuisine',       'holiday',
+    'cooking_style', 'occasion',
+    'appliance',     'equipment',
+    'business_tags', 'dietary',
+    'feature_page',  'difficulty',
+    'meal',          'seasonal',
+    'healthy',       'seo'
+  ]
   filterTerms = [];
-  //
   filterForm: FormGroup;
 
 
@@ -30,12 +38,11 @@ export class ChildSearchRecipeComponent implements OnInit {
   }
 
   callParentFilterResults(){
-    this.filterEvent.emit();
     document.getElementById("overlay").style.display = "block";
     
-    console.log(this.originalRecipes);
-    console.log(this.apiTags);
-    console.log(this.apiTags.results.length)
+    // console.log(this.originalRecipes);
+    // console.log(this.apiTags);
+    // console.log(this.apiTags.results.length)
 
 
   };
@@ -45,20 +52,36 @@ export class ChildSearchRecipeComponent implements OnInit {
     document.getElementById("overlay").style.display = "none";
   }
 
+  //addFilterTerm function called when users select a filter checkbox. Function adds the checkbox value to the tags array found under 
+  //filterForm.value.tags. Function also removes tags if the user unchecks a filter box. 
   addFilterTerm(event) {
-    event.stopPropagation();
     const checkArray: FormArray = this.filterForm.get('tags') as FormArray;
 
     if(event.target.checked){
       checkArray.push(new FormControl(event.target.value));
-    }
-
-
-
-    
-
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == event.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
     };
 
-  checkSearchTerms() {};
+    // console.log(this.filterForm);
+    console.log(this.filterForm.value.tags)
+  };
+
+  //Prevents click event from propagating to the overlay, which would then close the filter overlay.
+  stopPropagation(event) {
+    event.stopPropagation();
+  };
+
+  filterOriginalRecipes() {
+    this.filterEvent.emit();
+
+  };
 
 }

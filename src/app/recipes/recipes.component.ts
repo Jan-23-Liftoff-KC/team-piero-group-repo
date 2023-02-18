@@ -66,5 +66,7 @@ export class RecipesComponent implements OnInit {
     this.instructions = selected['instructions'];
   }
 
-  filterResults() {};
+  filterResults() {
+    console.log("filterEvent has occurred.")
+  };
 }
