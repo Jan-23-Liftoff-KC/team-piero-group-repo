@@ -12,19 +12,19 @@ export class ChildSearchRecipeComponent implements OnInit {
 
   @Output() filterEvent = new EventEmitter();
   @Input() originalRecipes;
-  filteredRecipes;
   apiTags = apiTags;
-  tagCategories = [
-    'cuisine',       'holiday',
-    'cooking_style', 'occasion',
-    'appliance',     'equipment',
-    'business_tags', 'dietary',
-    'feature_page',  'difficulty',
-    'meal',          'seasonal',
-    'healthy',       'seo'
-  ]
-  filterTerms = [];
   filterForm: FormGroup;
+  filteredRecipes = [];
+  // tagCategories = [
+  //   'cuisine',       'holiday',
+  //   'cooking_style', 'occasion',
+  //   'appliance',     'equipment',
+  //   'business_tags', 'dietary',
+  //   'feature_page',  'difficulty',
+  //   'meal',          'seasonal',
+  //   'healthy',       'seo'
+  // ];
+
 
 
   constructor(private fb: FormBuilder) { }
@@ -37,14 +37,9 @@ export class ChildSearchRecipeComponent implements OnInit {
    
   }
 
-  callParentFilterResults(){
+  //Turns on filter overlay when user clicks "Show Filters button"
+  showFilters(){
     document.getElementById("overlay").style.display = "block";
-    
-    // console.log(this.originalRecipes);
-    // console.log(this.apiTags);
-    // console.log(this.apiTags.results.length)
-
-
   };
   
   //Turns off the filter overlay if user clicks outside of the checkbox areas
@@ -52,8 +47,8 @@ export class ChildSearchRecipeComponent implements OnInit {
     document.getElementById("overlay").style.display = "none";
   }
 
-  //addFilterTerm function called when users select a filter checkbox. Function adds the checkbox value to the tags array found under 
-  //filterForm.value.tags. Function also removes tags if the user unchecks a filter box. 
+  //Keeps track of filters selected by the user and removes them if unselected. Selected filters stored
+  //as "filterForm.value.tags"
   addFilterTerm(event) {
     const checkArray: FormArray = this.filterForm.get('tags') as FormArray;
 
@@ -70,8 +65,9 @@ export class ChildSearchRecipeComponent implements OnInit {
       });
     };
 
-    // console.log(this.filterForm);
+    console.log(this.originalRecipes);
     console.log(this.filterForm.value.tags)
+    console.log(this.originalRecipes[0].tags.length)
   };
 
   //Prevents click event from propagating to the overlay, which would then close the filter overlay.
@@ -79,9 +75,38 @@ export class ChildSearchRecipeComponent implements OnInit {
     event.stopPropagation();
   };
 
+  //Filters the list of recipes returned from the user's search based on the selected filters. Stores filtered
+  //recipes in the filteredRecipes array.
   filterOriginalRecipes() {
-    this.filterEvent.emit();
+    this.filteredRecipes = [];
+    this.originalRecipes.forEach((recipe) => {
+      
+      if (this.filteredRecipes.includes(recipe)) {
+        return this.filteredRecipes;
+      }
+      else if (this.filterForm.value.tags.every( function(activeTags) {
+      
+        let containsTag = false;
 
+        for (let i = 0; i < recipe.tags.length-1; i++) {
+          if (recipe.tags[i].name == activeTags) {
+            console.log(activeTags)
+            return containsTag = true; 
+        }};
+        return containsTag
+      })) {
+        this.filteredRecipes.push(recipe)
+      }
+    
+      return this.filteredRecipes
+    });
+
+
+    console.log(this.filteredRecipes);
+
+    // this.filterEvent.emit();    
+    // console.log(this.filteredRecipes)
   };
 
-}
+
+};

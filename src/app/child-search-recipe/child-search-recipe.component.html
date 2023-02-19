@@ -1,5 +1,5 @@
 <h5>Child Component</h5>
-<button (click)="callParentFilterResults()">Show Filters</button>
+<button (click)="showFilters()">Show Filters</button>
 
 
 <div  class="scrollbox" id="overlay" (click)="showFiltersOff()">
@@ -7,19 +7,24 @@
     <form [formGroup]="filterForm">
 
         <div class="boxList">
-
             <h3>Cuisines</h3>
-
             <ng-container *ngFor="let tag of apiTags.results" formArrayName="tags">
-
                 <div *ngIf="tag.type === 'cuisine'" (change)="addFilterTerm($event)">
-
                     <input type="checkbox" id="{{ tag.display_name }}" value="{{ tag.name }}" 
-                            (click)="stopPropagation($event)">
-                    
+                            (click)="stopPropagation($event)">                    
                     <label class="filterLabel" for="{{ tag.display_name }}" 
                             (click)="stopPropagation($event)">{{tag.display_name}}</label><br>
-                
+                </div>
+            </ng-container>     
+        </div>
+        <div class="boxList">
+            <h3>Appliances</h3>
+            <ng-container *ngFor="let tag of apiTags.results" formArrayName="tags">
+                <div *ngIf="tag.type === 'appliance'" (change)="addFilterTerm($event)">
+                    <input type="checkbox" id="{{ tag.display_name }}" value="{{ tag.name }}" 
+                            (click)="stopPropagation($event)">                    
+                    <label class="filterLabel" for="{{ tag.display_name }}" 
+                            (click)="stopPropagation($event)">{{tag.display_name}}</label><br>
                 </div>
             </ng-container>     
         </div>
@@ -27,7 +32,7 @@
 
 
 
-    <button class="fixed-bottom" style="height: 50px;" id="filterApply" (click)="filterOriginalRecipes">Apply</button>
+    <button class="fixed-bottom" style="height: 50px;" id="filterApply" (click)="filterOriginalRecipes()">Apply</button>
 
 <!--    <div class="boxList">
             <h3>Appliances</h3>
