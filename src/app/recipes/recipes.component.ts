@@ -16,6 +16,7 @@ export class RecipesComponent implements OnInit {
 
   selected:object;  
   instructions: object [];
+  ingredients: object [];
 
   options: object = {
     method: 'GET',
@@ -46,10 +47,7 @@ export class RecipesComponent implements OnInit {
   
       if(entry['canonical_id'].includes('compilation'))
       {      
-        for(let part of entry['recipes'])
-        {
-          this.filtered.push(part);
-        }
+       //remove all compilation recipes to improve relevance of search results
       }
       else{
    
@@ -59,8 +57,11 @@ export class RecipesComponent implements OnInit {
     this.recipes = this.filtered;  
   }
 
-  instructionFunction(selected):void{
+  instructionAndIngredientFunction(selected):void{
     this.display = true;    
     this.instructions = selected['instructions'];
-  }
+    this.ingredients = selected['sections'][0]['components'];
+
+
+  }  
 }
