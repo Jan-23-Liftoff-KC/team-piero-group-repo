@@ -12,6 +12,7 @@ import { PantryComponent } from './components/pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchRecipesService } from './services/search-recipes.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchRecipesService } from './services/search-recipes.service';
     LoginComponent,
     SignUpComponent,
     PantryComponent,
-    RecipesComponent
+    RecipesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
