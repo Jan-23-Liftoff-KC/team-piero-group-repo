@@ -4,7 +4,6 @@ import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { PantryComponent } from './components/pantry/pantry.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 
@@ -18,10 +17,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: 'sign-up',
-    component: SignUpComponent
-  },
+  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
   {
     path: 'home',
     component: HomeComponent
