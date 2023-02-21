@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { auth, createUserWithEmailAndPassword } from 'src/firebase/firebase.init';
+import { firebase_service } from 'src/firebase/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -17,13 +20,23 @@ export class SignupFormComponent implements OnInit {
     }
   );
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     console.log(this.signupForm.value);
+
+    createUserWithEmailAndPassword(auth, this.signupForm.value.email, this.signupForm.value.password).then((userCredentials) => {
+      const user = userCredentials.user;
+      const userId = user.uid;
+      console.log("New ID created: " + userId);
+
+      firebase_service.createCollection("users/" + userId, [this.signupForm.value]);
+      this.signupForm.reset();
+      this.router.navigate(["home"]);
+    });
   }
 
 }
