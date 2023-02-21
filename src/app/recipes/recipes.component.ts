@@ -88,12 +88,14 @@ export class RecipesComponent{
         this.components.push(component);
       }
 
-  filterResults() {
-    console.log("filterEvent has occurred.")
-  };
+
     }   
 
-  }  
+  };
+  
+    filterResults() {
+    console.log("filterEvent has occurred.")
+  };
 
 
   }
