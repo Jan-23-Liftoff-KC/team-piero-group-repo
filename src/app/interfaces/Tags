@@ -1,0 +1,352 @@
+
+These are the tags that are available from the Tasty API tags/list. The categories listed
+(such as "cuisine") is the "type" value found in the tags/list json. The items listed in each
+category are the "name" values found in the tags/list json. I broke them into their different
+categories here to help us see what kinds of tags we might be able to use when filtering search
+results for our users. You can see the structure of the tags/list json by looking at
+the file in ./interfaces/tags.ts
+
+
+
+cuisine;
+
+  'chinese',        'german',         'japanese',
+  'middle_eastern', 'seafood',        'thai',
+  'hawaiian',       'indigenous',     'cuban',
+  'venezuelan',     'british',        'fusion',
+  'taiwanese',      'laotian',        'jamaican',
+  'puerto_rican',   'vietnamese',     'african',
+  'south_african',  'west_african',   'swedish',
+  'haitian',        'soul_food',      'french',
+  'korean',         'latin_american', 'ethiopian',
+  'persian',        'american',       'brazilian',
+  'greek',          'indian',         'italian',
+  'mexican',        'caribbean',      'filipino',
+  'kenyan',         'lebanese',       'peruvian',
+  'dominican'
+
+cooking_style;
+
+  'deep_fry',         'mashup',
+  'no_bake_desserts', 'one_pot_or_pan',
+  'kid_friendly',     'pan_fry',
+  'comfort_food',     'bake',
+  'grill',            'steam',
+  'big_batch',        'meal_prep',
+  'stuffed'
+
+appliance;
+
+  'blender',         'dutch_oven',
+  'freezer',         'oven',
+  'instant_pot',     'air_fryer',
+  'slow_cooker',     'stove_top',
+  'broiler',         'cast_iron_pan',
+  'food_processor',  'hand_mixer',
+  'microwave',       'wok',
+  'pressure_cooker'
+
+business_tags;
+
+  'one_top_app_main_feed',
+  'one_top_app_steak',
+  'chop_champ',
+  'mccormick_seasoned_pro',
+  'mccormick_game_day',
+  'light_bites',
+  'walmart_plus_holiday_2020',
+  'tasty_cookbook',
+  'cooking_kit',
+  'one_top_app_dessert',
+  'one_top_app_grains',
+  'tastyjunior',
+  'oh_so_rose',
+  'for_real_grapefruit',
+  'tasty_junior_cookbook',
+  'licensed_video',
+  'baking_kit',
+  'one_top_app_seafood',
+  'one_top_app_veggies',
+  'one_top_app_sides',
+  'schwartz_seasoned_pro',
+  'sponsored_recipe',
+  'mccormick_easy_dinner',
+  'lil_brut',
+  'sparkling_rose',
+  'walmart_meal_planning',
+  'one_top_app_meat',
+  'one_top_app_sauces',
+  'ice_cream_social',
+  'club_house_seasoned_pro',
+  'walmart_holiday_bundle',
+  'eko_video',
+  'perf_pinot_noir',
+  'raspberry_rose',
+  'tasty_dinner_kits',
+  'one_top_friendly',
+  'epoca_walmart',
+  'one_top_app_eggs',
+  'best_of_tasty',
+  'beyond_red_blend',
+  'srsly_sauv_blanc',
+  'every_occasion',
+  'holiday_treats',
+  'deeply_blood_orange'
+
+feature_page;
+
+  'tasty_holiday_thanksgiving',
+  'tasty_holiday_christmas',
+  'frank_s_vegetarian_snacks',
+  'nynm_veggie',
+  'nynm_expert',
+  'nynm_instant_pot',
+  'mc_breakfast_healthy',
+  'tips_viral',
+  'budget_10',
+  'budget_plans',
+  'summer_eat',
+  'summer_sides',
+  'shoppable_recipes_meal_prep',
+  'shoppable_recipes_holiday_dinners',
+  'shoppable_recipes_seasonal_desserts',
+  'charcuterie_tips',
+  'mccormick_world_sides',
+  'mccormick_world_desserts',
+  'blue',
+  'red',
+  'dole_crowd_pleasers',
+  'dole_sweet_treats',
+  'mccormick_holiday_appetizers',
+  'mccormick_holiday_sides',
+  'ghana_african_cuisine',
+  'cuba_african_cuisine',
+  'dr_african_cuisine',
+  'brazil_african_cuisine',
+  'pr_african_cuisine',
+  'west_africa_african_cuisine',
+  'holiday_cookie_howto',
+  'holiday_cookie_hacks',
+  'tasty_s_5th_birthday_savory',
+  'nynm_money',
+  'tasty_ewd_comfort',
+  'budget_expert',
+  'mccormick_ugc_one_pot_slow',
+  'summer_drink',
+  'fourth_picks',
+  'fourth_eat',
+  'fourth_drink',
+  'fourth_desserts',
+  'uber_game_day_dips',
+  'uber_game_day_ribs',
+  'thanksgiving_sips',
+  'thanksgiving_vegetarian',
+  'thanksgiving_slow',
+  'franks_spicy_bites',
+  'charcuterie_appetizers',
+  'mccormick_world_hearty'
+  'rainbow',
+  'mccormick_holiday_desserts',
+  'dole_beverages',
+  'kings_hawaiian_desserts',
+  'ethiopia_african_cuisine',
+  'nigeria_african_cuisine',
+  'trinidad_african_cuisine',
+  'southernus_african_cuisine',
+  'incredible_egg_lunches',
+  'incredible_egg_desserts',
+  'tasty_s_5th_birthday_sweet',
+  'tasty_ewd_fifteen',
+  'almond_joy',
+  'frank_s_cheesy_apps',
+  'nynm_desserts',
+  'mc_breakfast_savory',
+  'mc_breakfast_easy',
+  'spring_holiday',
+  'budget_shop',
+  'budget_four',
+  'shoppable_recipes_desserts',
+  'thanksgiving_sides',
+  'thanksgiving_desserts',
+  'shoppable_recipes_thanksgiving',
+  'franks_nachos',
+  'franks_handheld_bites',
+  'butterfinger_winner',
+  'butterfinger_runner_up_cookies',
+  'butterfinger_other_recipes',
+  'charcuterie_recipes',
+  'mccormick_world_vegetarian',
+  'mccormick_holiday_drinks',
+  'kings_hawaiian_savory_wings',
+  'kings_hawaiian_delectable_dips',
+  'kings_hawaiian_finger_foods',
+  'kenya_african_cuisine',
+  'holiday_cookie_recipe',
+  'tasty_ewd_family',
+  'tasty_ewd_tips',
+  'snickers',
+  'peppermint_pattie',
+  'tasty_holiday_hanukkah',
+  'tasty_holiday_nye',
+  'tasty_holiday_festive_favorites',
+  'nynm_protein',
+  'nynm_meal_prep',
+  'mc_breakfast_sweet',
+  'tips_pros',
+  'tips_culinary',
+  'spring_eat'
+  'spring_sides',
+  'mccormick_ugc_one_pot_pasta',
+  'summer_holiday',
+  'summer_desserts',
+  'shoppable_recipes_family_dinner',
+  'uber_game_day_appetizers',
+  'uber_game_day_sliders',
+  'live_jasmine_and_tucker',
+  'charcuterie_dips',
+  'charcuterie_sweetchuterie',
+  'charcuterie_breakfast',
+  'dole_easy_appetizers',
+  'mccormick_holiday_mains',
+  'dole_snacks',
+  'dole_desserts',
+  'capeverde_african_cuisine',
+  'haiti_african_cuisine',
+  'east_africa_african_cuisine',
+  'south_africa_african_cuisine',
+  'incredible_egg_breakfasts',
+  'qfp_recipes',
+  'qfp_baking',
+  'tasty_s_5th_birthday_recipe',
+  'tasty_ewd_healthy',
+  'tasty_ewd_fall',
+  '3_musketeers',
+  'hershey_s',
+  'tasty_holiday_snacks',
+  'frank_s_chicken_bites',
+  'tips_basics',
+  'spring_drink',
+  'spring_kitchen',
+  'mccormick_ugc_one_pot_winners',
+  'mccormick_ugc_one_pot_others',
+  'fourth_sides',
+  'thanksgiving_classics',
+  'live_past_lives',
+  'live_shop_all',
+  'live_upcoming',
+  'shoppable_recipes_holiday_appetizers',
+  'franks_dips',
+  'butterfinger_runner_up_bark',
+  'charcuterie_inspiration',
+  'tasty_charcuterie_quizzes',
+  'pink',
+  'green',
+  'dole_morning_starters',
+  'dole_hearty_meals',
+  'homemade_holiday',
+  'kings_hawaiian_roll_sliders',
+  'jamaica_african_cuisine',
+  'incredible_egg_dinners'
+
+meal;
+
+'appetizers',
+  'sides',
+  'breakfast',
+  'desserts',
+  'drinks',
+  'lunch',
+  'snacks',
+  'dinner',
+  'bakery_goods'
+
+healthy;
+
+'low_calorie',
+  'low_fat',
+  'low_carb',
+  'low_sugar',
+  'high_protein',
+  'high_fiber'
+
+holiday;
+
+'fourth_of_july',
+  'thanksgiving',
+  'asian_pacific_american_heritage_month',
+  'mothers_day',
+  'game_day',
+  'black_history_month',
+  'pride_month',
+  'st_patrick_s_day',
+  'passover',
+  'cinco_de_mayo',
+  'christmas',
+  'lunar_new_year',
+  'latinx_heritage_month',
+  'juneteenth',
+  'easter',
+  'halloween',
+  'valentines_day'
+
+occasion;
+
+'weeknight',
+  'date_night',
+  'indulgent_sweets',
+  'brunch',
+  'special_occasion',
+  'happy_hour',
+  'casual_party',
+  'bbq'
+
+equipment;
+
+ 'paper_bowls',      'parchment_paper',      'peeler',
+  'pyrex',            'saute_pan',            'spatula',
+  'tongs',            'tupperware',           'zipper_freezer_bags',
+  'rolling_pin',      'cupcake_pan',          'ice_cube_tray',
+  'lollipop_sticks',  'sauce_pan',            'wax_paper',
+  'whisk',            'chefs_knife',          'dry_measuring_cups',
+  'measuring_spoons', 'mixing_bowl',          'bread_pan',
+  'colander',         'oven_mitts',           'paper_cups',
+  'pie_dish',         'strainer',             'zipper_storage_bags',
+  'cutting_board',    'fish_spatula',         'kitchen_shears',
+  'microplane',       'sieve',                'ice_cream_scoop',
+  'paper_napkins',    'plastic_utensils',     'wooden_spoon',
+  'cooling_rack',     'liquid_measuring_cup', 'offset_spatula',
+  'spider',           'cake_pan',             'cheese_grater',
+  'paper_plates',     'plastic_wrap',         'baking_cups',
+  'baking_pan'
+
+dietary;
+
+ 'contains_alcohol',
+  'dairy_free',
+  'healthy',
+  'vegan',
+  'pescatarian',
+  'gluten_free',
+  'vegetarian',
+  'keto'
+
+difficulty;
+
+'under_15_minutes',
+  'easy',
+  'under_30_minutes',
+  'under_45_minutes',
+  'under_1_hour',
+  '5_ingredients_or_less'
+
+seasonal;
+
+'fall', 'summer', 'winter', 'spring'
+
+seo;
+
+ 'cuisines'
+
+
+
+    

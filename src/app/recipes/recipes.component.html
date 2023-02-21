@@ -1,6 +1,6 @@
 <div class="search-form">
-    Search: <input #searchTerm type="text" (keyup.enter)="search(searchTerm.value);" name="searchTerm"/>
-    <button (click)="search(searchTerm.value);">Search</button>
+    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
+    <button (click)="onSubmit()">Search</button>
  </div>
 
  
@@ -11,7 +11,7 @@
     <div class = "column" *ngIf="recipes">
         <h2 >Recipes:</h2>
           <ul>
-            <li *ngFor = 'let recipe of recipes' (click)="instructionFunction(recipe)">{{recipe['name']}}</li>
+            <li *ngFor = 'let recipe of recipes' (click)="instructionAndIngredientFunction(recipe);">{{recipe['name']}}</li>
          </ul> 
     </div>
     <div class = "column" *ngIf="display">
@@ -20,5 +20,12 @@
            <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
          </ol>
     </div>
+    <div class = "column" *ngIf="display">
+      <h2>Ingredients:</h2>
+      <ul>
+        <li *ngFor = "let component of components">{{component['raw_text']}}</li>
+      </ul>
+ </div>
   </div>
+
 
