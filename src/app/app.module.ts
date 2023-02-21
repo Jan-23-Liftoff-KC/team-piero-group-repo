@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+// import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { PantryComponent } from './components/pantry/pantry.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipesComponent } from './recipes/recipes.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SearchRecipesService } from './services/search-recipes.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +24,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignUpComponent,
     PantryComponent,
-    LogoutComponent
+    LogoutComponent,
+    RecipesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [SearchRecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
