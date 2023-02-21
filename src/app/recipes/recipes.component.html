@@ -1,6 +1,6 @@
 <div class="search-form">
-    Search: <input #searchTerm type="text" (keyup.enter)="search(searchTerm.value);" name="searchTerm"/>
-    <button (click)="search(searchTerm.value);">Search</button>
+    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
+    <button (click)="onSubmit()">Search</button>
  </div>
 
 
@@ -20,7 +20,7 @@
     <div class = "column" *ngIf="display">
       <h2>Ingredients:</h2>
       <ul>
-        <li *ngFor = "let ingredient of ingredients">{{ingredient['raw_text']}}</li>
+        <li *ngFor = "let component of components">{{component['raw_text']}}</li>
       </ul>
  </div>
   </div>
