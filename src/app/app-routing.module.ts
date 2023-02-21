@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PantryComponent } from './components/pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,9 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
+  { 
+    path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) 
+  },
   {
     path: 'home',
     component: HomeComponent
@@ -33,8 +36,11 @@ const routes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
-  
 
 ];
 

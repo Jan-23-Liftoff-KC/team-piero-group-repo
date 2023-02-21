@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchRecipesService } from './services/search-recipes.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     PantryComponent,
     RecipesComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
