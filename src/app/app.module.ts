@@ -12,6 +12,7 @@ import { PantryComponent } from './components/pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchRecipesService } from './services/search-recipes.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-recipe.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -24,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignUpComponent,
     PantryComponent,
     RecipesComponent,
+    FavoritesComponent,
     ChildSearchRecipeComponent
   ],
   imports: [
