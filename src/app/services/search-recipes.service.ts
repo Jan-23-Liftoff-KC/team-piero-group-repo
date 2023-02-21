@@ -31,32 +31,4 @@ export class SearchRecipesService {
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  // options = {
-  //   method: 'GET',
-  //   headers: {
-  //     'X-RapidAPI-Key': '7c74d55e43msh895d92d3174837fp19733djsn47065daa1688',
-  //     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-  //   }
-  // };
-
-  // getRecipes() {
-  //   return fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=chicken%20noodle', this.options)
-  //     // .toPromise()
-  //     .then(response => response.json())
-  //     // .then(response => console.log(response))
-  //     .catch(err => console.error(err));
-  // };
-
 };
