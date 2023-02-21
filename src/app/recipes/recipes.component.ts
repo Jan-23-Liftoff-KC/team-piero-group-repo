@@ -27,6 +27,7 @@ export class RecipesComponent{
   sections: object [];  
   components: object [] = [];  
   filtered: object[] = [];
+  storedRecipes;
 
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService) {  } 
@@ -41,6 +42,8 @@ export class RecipesComponent{
       .subscribe(resp => {
         this.resultsCount = resp.count;
         this.recipes = resp.results;
+        this.storedRecipes = resp.results;  
+
 
         this.recipesString = JSON.stringify(this.recipes); //results are stringifyed then parsed to create iterable list for compilationFilter
         this.recipes = JSON.parse(this.recipesString);        
@@ -48,7 +51,7 @@ export class RecipesComponent{
       })
 
       this.display = false;
-    }
+    };
 
 
   //remove all compilation recipes to improve relevance of search results
@@ -66,8 +69,8 @@ export class RecipesComponent{
         this.filtered.push(entry);
       }
     }
-    this.recipes = this.filtered;  
-  }
+    this.recipes = this.filtered;
+  };
 
   //Function called when a user clicks a recipe name in the html view. Assigns the recipe instructions from the 
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
@@ -93,9 +96,8 @@ export class RecipesComponent{
 
   };
   
-    filterResults() {
-    console.log("filterEvent has occurred.")
+  filterResults(filteredRecipes) {
+    this.recipes = filteredRecipes;
   };
 
-
-  }
+};

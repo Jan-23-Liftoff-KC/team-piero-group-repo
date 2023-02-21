@@ -4,7 +4,7 @@
  </div>
 
  
- <child-search-recipe [originalRecipes]="recipes" (filterEvent)="filterResults()"></child-search-recipe>
+ <child-search-recipe [originalRecipes]="storedRecipes" (filterEvent)="filterResults($event)"></child-search-recipe>
 
 
 <div class="row">
