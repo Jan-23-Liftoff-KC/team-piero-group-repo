@@ -9,7 +9,10 @@ export class SignUpComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  getUrl()
+  {
+    return "url('assets/joanna-kosinska-i0IvwAhhGZM-unsplash.jpg')";
+  }
 }
