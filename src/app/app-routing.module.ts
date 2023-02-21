@@ -5,6 +5,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { PantryComponent } from './components/pantry/pantry.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,12 @@ const routes: Routes = [
   {
     path: 'pantry',
     component: PantryComponent
+  },
+  {
+    path: 'recipes',
+    component: RecipesComponent
   }
+  
 
 ];
 
