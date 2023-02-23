@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import * as apiTags from 'src/assets/apiTags.json';
+import { RecipesComponent } from '../recipes/recipes.component';
 
 
 @Component({
@@ -15,19 +16,22 @@ export class ChildSearchRecipeComponent implements OnInit {
   apiTags = apiTags;
   filterForm: FormGroup;
   filteredRecipes = [];
-  // tagCategories = [
-  //   'cuisine',       'holiday',
-  //   'cooking_style', 'occasion',
-  //   'appliance',     'equipment',
-  //   'business_tags', 'dietary',
-  //   'feature_page',  'difficulty',
-  //   'meal',          'seasonal',
-  //   'healthy',       'seo'
-  // ];
+  //tagCategories object is used in template to display filters. Omitted unusual categories.
+  tagCategories = {
+    "name": [
+      'cuisine', 'holiday', 'occasion', 'appliance', 'equipment',
+      'dietary', 'difficulty', 'meal', 'seasonal', 'healthy'
+    ],
+    "display_name": [
+      'Cuisine', 'Holiday', 'Occasion', 'Appliance', 'Equipment',
+      'Dietary', 'Difficulty', 'Meal', 'Seasonal', 'Healthy'
+
+    ]};
 
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private recipeComponent: RecipesComponent) { 
+  }
 
   //Creates the filter form on page initialization
   ngOnInit(): void {
@@ -66,6 +70,7 @@ export class ChildSearchRecipeComponent implements OnInit {
         i++;
       });
     };
+    console.log(this.filterForm.value.tags)
   };
 
 
@@ -110,6 +115,7 @@ export class ChildSearchRecipeComponent implements OnInit {
       tags.clear()
     };
     this.filterOriginalRecipes();
+    this.recipeComponent.compilationFilter();
   };
 
 

@@ -7,7 +7,23 @@
 
     <form [formGroup]="filterForm">
 
-        <div class="boxList">
+        <ng-container *ngFor="let category of tagCategories.name; let i = index">
+            <div class="boxList">
+                <h3>{{tagCategories.display_name[i]}}</h3>
+                <div *ngFor="let tag of apiTags.results" formArrayName="tags">
+                    <div *ngIf="tag.type === category" (change)="addFilterTerm($event)">
+                        <input type="checkbox" id="{{ tag.name }}" value="{{ tag.name }}" 
+                                (click)="stopPropagation($event)">                    
+                        <label class="filterLabel" for="{{ tag.name }}" 
+                                (click)="stopPropagation($event)">{{tag.display_name}}</label><br>
+                    </div>
+                </div>     
+            </div>            
+        </ng-container>
+
+
+
+        <!-- <div class="boxList">
             <h3>Cuisines</h3>
             <ng-container *ngFor="let tag of apiTags.results" formArrayName="tags">
                 <div *ngIf="tag.type === 'cuisine'" (change)="addFilterTerm($event)">
@@ -28,7 +44,7 @@
                             (click)="stopPropagation($event)">{{tag.display_name}}</label><br>
                 </div>
             </ng-container>     
-        </div>
+        </div> -->
     </form>
 
 
