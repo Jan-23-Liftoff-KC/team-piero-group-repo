@@ -27,14 +27,15 @@ export class SignupFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
-
     createUserWithEmailAndPassword(auth, this.signupForm.value.email, this.signupForm.value.password).then((userCredentials) => {
       const user = userCredentials.user;
       const userId = user.uid;
+      console.log(user);
+      console.log(user.providerData[0]);
+      console.log(user.metadata);
       this.matSnackBar.open(`Account created successfully!\nWelcome user: ${userId}`, "Close");
 
-      firebase_service.createCollection("users/" + userId, [this.signupForm.value]);
+      firebase_service.createCollection("users/" + userId, [user.providerData[0]]);
       this.signupForm.reset();
       this.router.navigate(["login"]);
     }).catch((err) => {
