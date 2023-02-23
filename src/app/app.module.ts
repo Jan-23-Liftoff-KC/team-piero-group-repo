@@ -15,6 +15,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchRecipesService } from './services/search-recipes.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { SmallRecipeCardComponent } from './components/small-recipe-card/small-recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     PantryComponent,
     LogoutComponent,
     RecipesComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    SmallRecipeCardComponent
   ],
   imports: [
     BrowserModule,
