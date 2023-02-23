@@ -14,6 +14,7 @@ import { SearchRecipesService } from './services/search-recipes.service';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     NgbModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [SearchRecipesService],
   bootstrap: [AppComponent]
