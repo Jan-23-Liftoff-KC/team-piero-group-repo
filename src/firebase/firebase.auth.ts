@@ -9,18 +9,18 @@ import {
 
 export const startEmailLogin = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
-    signInWithEmailAndPassword(auth, email, password).then(() => {
-      resolve('Sign-in successful')
+    signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
+      resolve({ message: 'Sign-in successful', data: userCredentials })
     }).catch((error) => {
-      reject('An error happened')
+      reject({ message: 'An error happened', error })
     });
   })
 };
 
 export const startCreateUserWithEmailLogin = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
-    createUserWithEmailAndPassword(auth, email, password).then(() => {
-      resolve('User creation successful')
+    createUserWithEmailAndPassword(auth, email, password).then((userCredentials) => {
+      resolve({ message: 'User creation successful', data: userCredentials })
     }).catch((error) => {
       reject('An error happened')
     });
@@ -29,8 +29,8 @@ export const startCreateUserWithEmailLogin = (email: string, password: string) =
 
 export const startGoogleLogin = () => {
   return new Promise((resolve, reject) => {
-    signInWithPopup(auth, googleAuthProvider).then((data) => {
-      resolve(data)
+    signInWithPopup(auth, googleAuthProvider).then((userData) => {
+      resolve({ message: 'Google login successful', data: userData })
     }).catch((error) => {
       reject('An error happened')
     });
@@ -39,8 +39,8 @@ export const startGoogleLogin = () => {
 
 export const startLogout = () => {
   return new Promise((resolve, reject) => {
-    signOut(auth).then(() => {
-      resolve('Sign-out successful')
+    signOut(auth).then((data) => {
+      resolve({ message: 'Sign-out successful', data })
     }).catch((error) => {
       reject('An error happened')
     });
