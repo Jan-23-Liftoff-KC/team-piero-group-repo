@@ -8,6 +8,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { SmallRecipeCardComponent } from './components/small-recipe-card/small-recipe-card.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent
+  },
+  {
+    path: 'small-recipe-card',
+    component: SmallRecipeCardComponent
   }
   
 
