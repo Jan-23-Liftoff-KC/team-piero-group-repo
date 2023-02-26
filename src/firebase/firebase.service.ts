@@ -3,7 +3,7 @@ import { ref, set, onValue, remove, update } from "firebase/database";
 
 class FireBaseService {
     // takes a collection_name property and a collection payload to store a new or completely override an existing collection in firebase
-    createCollection(collection_name: string, payload: any[]) {
+    createCollection(collection_name: string, payload: any) {
       return new Promise((resolve, reject) => {
         const collectionRef = ref(db, '/' + collection_name)
         set(collectionRef, payload) 
