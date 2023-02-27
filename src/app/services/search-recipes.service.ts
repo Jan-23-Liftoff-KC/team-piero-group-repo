@@ -14,7 +14,7 @@ export class SearchRecipesService {
 
   headers = new HttpHeaders({
     'x-rapidapi-host': 'tasty.p.rapidapi.com',
-    'x-rapidapi-key': '7c74d55e43msh895d92d3174837fp19733djsn47065daa1688'
+    'x-rapidapi-key': '47c620be6bmshcd09d2f02d1bf5dp14967ejsnbe17a2cc0cc9'
   });
 
   getRecipes(searchTerm: string): Observable<RootObject> {
