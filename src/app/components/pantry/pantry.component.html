@@ -1,1 +1,35 @@
-<p>pantry works!</p>
+<div class="search-form">
+    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="retrievePantry()" name="searchRecipe" id="searchRecipe" type="text">
+    <button (click)="retrievePantry()">Search</button>
+ </div>
+
+
+<div class="row">
+    <div class = "column">
+      <h2 >Available from Pantry:</h2>
+      <ul>
+        <li *ngFor = 'let item of pantryContents'>{{item}}</li>
+     </ul> 
+    </div>
+    <div class = "column" *ngIf="recipesDisplay">
+        <h2 >Recipes:</h2>
+          <ul>
+            <li *ngFor = 'let recipe of combinedRecipes' (click)="instructionAndIngredientFunction(recipe);">{{recipe['name']}}</li>
+         </ul> 
+    </div>
+    <div class = "column" *ngIf="display">
+         <h2>Recipe Instructions:</h2>
+         <form action="/button-type"> <button type="button" onclick="alert('Recipe Added to Favorites!')">
+          Favorite</button><br><br>
+          </form>
+         <ol>
+           <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
+         </ol>
+    </div>
+    <div class = "column" *ngIf="display">
+      <h2>Ingredients:</h2>
+      <ul>
+        <li *ngFor = "let component of components">{{component['raw_text']}}</li>
+      </ul>
+ </div>
+  </div>

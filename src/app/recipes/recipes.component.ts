@@ -45,12 +45,16 @@ export class RecipesComponent{
         this.compilationFilter();
       })
 
+      this.compilationFilter();
+
       this.display = false;
     }
 
 
   //remove all compilation recipes to improve relevance of search results
   compilationFilter():void{
+
+    console.log(this.recipes);
     
     this.filtered = [];  // not redundant, reset recipes list between searches
   
