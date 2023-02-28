@@ -1,7 +1,7 @@
 <div class="search-form">
     Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
     <button (click)="onSubmit()">Search</button>
- </div>
+    </div>
 
 
 <div class="row">
@@ -13,9 +13,7 @@
     </div>
     <div class = "column" *ngIf="display">
          <h2>Recipe Instructions:</h2>
-         <form action="/button-type"> <button type="button" onclick="alert('Recipe Added to Favorites!')">
-          Favorite</button><br><br>
-          </form>
+         <button (click)="addToFavorites()">Add to Firebase Collection</button><br><br>
          <ol>
            <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
          </ol>

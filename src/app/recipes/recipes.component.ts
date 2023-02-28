@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
+import { firebase_service } from 'src/firebase/firebase.service';
 
 
 
@@ -48,7 +49,6 @@ export class RecipesComponent{
       this.display = false;
     }
 
-
   //remove all compilation recipes to improve relevance of search results
   compilationFilter():void{
     
@@ -88,6 +88,11 @@ export class RecipesComponent{
     }   
 
   }  
+
+  addToFavorites() {
+    const payload = this.components
+    console.log(payload)
+  }
 
 
   }
