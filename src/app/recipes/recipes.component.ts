@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
 import { firebase_service } from 'src/firebase/firebase.service';
+import { Database, getDatabase, push } from 'firebase/database';
+import { PathLocationStrategy } from '@angular/common';
+import { FirebaseApp } from 'firebase/app';
+import {ref} from 'firebase/database'
+
 
 
 
@@ -16,6 +21,11 @@ export class RecipesComponent{
   recipes;
   recipesString;
   resultsCount;
+  selected;
+  firebase;
+
+
+  
 
   // Further dev: Still need to decide on a way to handle the complicated hierarchy of recipe JSON. Difficult
   // to pull out the ingredients from each recipe because it is nested so deep in the object.
@@ -30,9 +40,11 @@ export class RecipesComponent{
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService) {  } 
 
+
   
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
+  
   
   onSubmit() { 
     
@@ -70,6 +82,7 @@ export class RecipesComponent{
   //Function called when a user clicks a recipe name in the html view. Assigns the recipe instructions from the 
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
   instructionAndIngredientFunction(selected):void{
+    this.selected = selected;
     this.display = true;    
     this.instructions = selected['instructions'];
     this.sections = selected['sections'];
@@ -88,11 +101,12 @@ export class RecipesComponent{
     }   
 
   }  
-
+  
   addToFavorites() {
-    const payload = this.components
+    const payload = this.selected
     console.log(payload)
-  }
-
 
   }
+
+}
+
