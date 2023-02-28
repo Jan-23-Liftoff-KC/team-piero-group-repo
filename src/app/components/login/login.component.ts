@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { startEmailLogin } from 'src/firebase/firebase.auth';
+import { Router } from '@angular/router';
+import { auth, signInWithEmailAndPassword } from 'src/firebase/firebase.init';
+import { from } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +12,28 @@ import { startEmailLogin } from 'src/firebase/firebase.auth';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+  });
 
-  loginForm: FormGroup = new FormGroup(
-    {
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    }
-  );
+  constructor(private router: Router, private matSnackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    startEmailLogin(this.loginForm.value.email, this.loginForm.value.password).then((res) => {
-      console.log(res)
-    }).catch((res) => {
-      console.log(res)
-    })
+    if(!this.loginForm.valid) {
+      return;
+    }
+
+    const { email, password } = this.loginForm.value;
+
+    from(signInWithEmailAndPassword(auth, email, password)).subscribe((userCredentials) => {
+      const user = userCredentials.user;
+      this.matSnackBar.open(`Sign-in Successful! Welcome ${user.email}`, "CLOSE");
+      this.router.navigate(["home"]);
+    });
+
   }
 }
