@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   signOut() {
     auth.signOut().catch((err) => console.log(err));
     this.matSnackBar.open("signed out successfully", "CLOSE");
-    this.router.navigate(["landing"]);
+    this.router.navigate([""]);
   }
 
 }
