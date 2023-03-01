@@ -1,21 +1,13 @@
 
-<section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-50">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="user profile image">
 
-            <div *ngIf="user">
-              <h1>Welcome!!! {{user.email}}</h1>
-              <div>
-                <button (click)="signOut()">sign out</button>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
+  <div class="card-body">
+    <h1 class="card-title">Welcome</h1>
+    <p class="card-text">{{user.email}}</p>
+    <div>
+      <button class="btn btn-primary" (click)="signOut()">sign out</button>
     </div>
   </div>
-</section>
+
+</div>

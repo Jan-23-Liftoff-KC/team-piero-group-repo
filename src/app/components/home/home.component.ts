@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { auth } from 'src/firebase/firebase.init';
+import { User } from "firebase/auth";
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,19 @@ import { auth } from 'src/firebase/firebase.init';
 })
 export class HomeComponent implements OnInit {
 
-  user = auth.currentUser;
+  user: User = null;
 
   constructor(private matSnackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        console.log(user);
+        this.user = user;
+      } else {
+        console.log("no user logged in");
+      }
+    });
   }
 
   signOut() {
