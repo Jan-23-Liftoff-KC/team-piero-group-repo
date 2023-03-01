@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { firebase_service } from 'src/firebase/firebase.service';
+import { RecipesComponent } from '../../recipes/recipes.component';
 
 @Component({
   selector: 'app-pantry',
