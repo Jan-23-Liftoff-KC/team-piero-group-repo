@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Observable } from 'rxjs';
-import { RootObject } from 'src/app/interfaces/ingredients'
-
-
+import { firebase_service } from 'src/firebase/firebase.service';
 
 
 @Component({
@@ -15,6 +12,7 @@ export class PantryComponent implements OnInit {
 
   pantrySearchTerm = '';
   ingredients;
+  pantryCollection;
 
   constructor(private http: HttpClient) { }
 
@@ -36,12 +34,37 @@ export class PantryComponent implements OnInit {
       );
   };
 
-
+  //Function used to update the pantryCollection variable if an object is added/removed. Called within
+  //the addPantryItem function.
+  retrievePantry() {
+    firebase_service.readCollection('users/dummy_user/pantry').then(data => {
+      this.pantryCollection = Object.values(data);
+    });
+  }
+  
   ngOnInit(): void {
+    this.retrievePantry()
   }
 
-  showTheResults() {
-    console.log(this.ingredients);
-  }
+  addPantryItem(ingredient) {
+
+    let newArray = this.pantryCollection
+    console.log(typeof(newArray))
+    if (newArray.includes(ingredient)) {
+ 
+      let index = Object.values(newArray).indexOf(ingredient);
+      newArray.splice(index, 1);
+      firebase_service.createCollection('users/dummy_user/pantry', newArray);
+      alert("The selected item has been removed from your pantry.");
+      this.retrievePantry();
+
+    } else {
+      newArray.push(ingredient)
+      firebase_service.createCollection('users/dummy_user/pantry', newArray);
+      alert("The selected item has been added to your pantry.");
+      this.retrievePantry();
+    };  
+
+  };
 
 }
