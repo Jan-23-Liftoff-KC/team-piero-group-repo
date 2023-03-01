@@ -1,28 +1,15 @@
-<nav class="navbar navbar-light bg-light fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Angular Recipe app</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-      <span class="navbar-toggler-icon"></span>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" style="background-color: #3f51b5;">
+      Menu
     </button>
-    
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="login">Login</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="signup">Sign Up</a>
-          </li>
-        </ul>
-
-      </div>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" routerLink="login" href="#">Login</a>
+      <a class="dropdown-item" routerLink="signup" href="#">Sign Up</a>
+      <a class="dropdown-item" routerLink="recipes" href="#">Recipes</a>
     </div>
   </div>
 </nav>
