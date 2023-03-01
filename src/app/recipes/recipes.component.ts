@@ -3,10 +3,12 @@ import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
 
 
+import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-recipe.component';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
+  // templateUrl: 'src/app/recipes/recipes.component.html',
   styleUrls: ['./recipes.component.scss']
 })
 
@@ -25,6 +27,7 @@ export class RecipesComponent{
   sections: object [];  
   components: object [] = [];  
   filtered: object[] = [];
+  storedRecipes;
 
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService) {  } 
@@ -39,6 +42,8 @@ export class RecipesComponent{
       .subscribe(resp => {
         this.resultsCount = resp.count;
         this.recipes = resp.results;
+        this.storedRecipes = resp.results;  
+
 
         this.recipesString = JSON.stringify(this.recipes); //results are stringifyed then parsed to create iterable list for compilationFilter
         this.recipes = JSON.parse(this.recipesString);        
@@ -48,7 +53,7 @@ export class RecipesComponent{
       this.compilationFilter();
 
       this.display = false;
-    }
+    };
 
 
   //remove all compilation recipes to improve relevance of search results
@@ -68,8 +73,8 @@ export class RecipesComponent{
         this.filtered.push(entry);
       }
     }
-    this.recipes = this.filtered;  
-  }
+    this.recipes = this.filtered;
+  };
 
   //Function called when a user clicks a recipe name in the html view. Assigns the recipe instructions from the 
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
@@ -89,9 +94,14 @@ export class RecipesComponent{
       for(let component of components){
         this.components.push(component);
       }
+
+
     }   
 
-  }  
+  };
+  
+  filterResults(filteredRecipes) {
+    this.recipes = filteredRecipes;
+  };
 
-
-  }
+};

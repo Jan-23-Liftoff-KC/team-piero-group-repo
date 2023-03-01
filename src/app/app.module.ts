@@ -15,6 +15,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-recipe.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PantryComponent,
     RecipesComponent,
     FavoritesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ChildSearchRecipeComponent
   ],
   imports: [
     BrowserModule,
