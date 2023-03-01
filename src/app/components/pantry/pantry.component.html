@@ -1,6 +1,13 @@
-<p>pantry works!</p>
+<div>
+    Search: <input [(ngModel)]="pantrySearchTerm" type="text" (keyup.enter)="getRecipes()">
+    <button (click)="getRecipes()">Search</button>
+ </div><br>
 
-<div class="search-form">
-    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
-    <button (click)="onSubmit()">Search</button>
- </div>
+
+ <ng-container *ngIf="ingredients">
+    <ng-container *ngFor="let ingredient of ingredients; let i = index">
+        <div *ngIf="i < 10">
+            <button type="button" class="btn btn-primary">{{ingredient}}</button><br><br>
+        </div>
+    </ng-container>
+ </ng-container> 

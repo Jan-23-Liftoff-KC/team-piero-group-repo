@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-recipe.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
