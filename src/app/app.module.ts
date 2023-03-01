@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-recipe.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

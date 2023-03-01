@@ -5,6 +5,7 @@
 
  
  <child-search-recipe [originalRecipes]="storedRecipes" (filterEvent)="filterResults($event)"></child-search-recipe>
+ <app-pantry (displayEvent) ="filterResults($event)"></app-pantry>
 
 
 <div class="row">

@@ -1,8 +1,9 @@
 <div class="search-form">
-    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="retrievePantry()" name="searchRecipe" id="searchRecipe" type="text">
-    <button (click)="retrievePantry()">Search</button>
+    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="searchPantryRecipes();" name="searchRecipe" id="searchRecipe" type="text">
+    <button (click)="searchPantryRecipes();">Search</button>
  </div>
 
+ <!---
 
 <div class="row">
     <div class = "column">
@@ -33,3 +34,5 @@
       </ul>
  </div>
   </div>
+
+-->

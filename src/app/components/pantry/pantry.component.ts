@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { firebase_service } from 'src/firebase/firebase.service';
 import { RecipesComponent } from '../../recipes/recipes.component';
+import { RouterModule, Router } from '@angular/router';
+import { AppRoutingModule } from '../../app-routing.module';
 
 @Component({
   selector: 'app-pantry',
@@ -10,6 +12,8 @@ import { RecipesComponent } from '../../recipes/recipes.component';
   styleUrls: ['./pantry.component.scss']
 })
 export class PantryComponent{
+
+  @Output() displayEvent = new EventEmitter();
   
   pantryRecipes;
   selectedItems  = ['tapioca','steak'];
@@ -34,7 +38,7 @@ export class PantryComponent{
   filtered: object[] = [];
 
 
-  constructor(private searchRecipeService: SearchRecipesService) {  } 
+  constructor(private router: Router, private searchRecipeService: SearchRecipesService) {  } 
 
 selectRecipeComponents(){
   
@@ -81,8 +85,16 @@ async searchPantryRecipes(){
     console.log("RECIPES VARIABLE VALUE" + JSON.stringify(this.recipes));
 
     await this.searchRecipeService.sleep(3000);
-    if(i==0){this.recipesDisplay = true;}; //wait till all terms have been searched and results combined before displaying
-    if(this.resultsCount >= 20) {this.recipesDisplay = true; break;}//if results are 20 or greater exit search
+    if(i==0){
+      this.displayEvent.emit(this.combinedRecipes);
+      this.router.navigate(["recipes"]);
+      //this.recipesDisplay = true;
+    } //wait till all terms have been searched and results combined before displaying
+    if(this.resultsCount >= 20) {
+      this.displayEvent.emit(this.combinedRecipes);
+      this.router.navigate(["recipes"]);
+      //this.recipesDisplay = true; 
+      break;}//if results are 20 or greater exit search
     }
 
 
