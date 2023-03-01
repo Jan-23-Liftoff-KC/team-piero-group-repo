@@ -1,1 +1,6 @@
 <p>pantry works!</p>
+
+<div class="search-form">
+    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
+    <button (click)="onSubmit()">Search</button>
+ </div>
