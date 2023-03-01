@@ -1,73 +1,96 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { Component} from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { firebase_service } from 'src/firebase/firebase.service';
-import { RecipesComponent } from '../../recipes/recipes.component';
-import { RouterModule, Router } from '@angular/router';
-import { AppRoutingModule } from '../../app-routing.module';
+import {  Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pantry',
   templateUrl: './pantry.component.html',
   styleUrls: ['./pantry.component.scss']
 })
-export class PantryComponent{
 
-  @Output() displayEvent = new EventEmitter();
+export class PantryComponent{
   
-  pantryRecipes;
-  selectedItems  = ['tapioca','steak'];
+  searchTerms:string [] =[];
+  //searchTerms = ['Rice','Rice Grapes'];
+  selectedItems = []; //selected from html form
+  
   combinedRecipes: object [] = [];
-  firebaseReturn;
-  pantryContents: object [] = [];  
-  pantryContentsString;
-  //selectedItems; 
 
   recipes: object [] = [];
   resultsCount = 0;
 
-  recipeSearchTerm = '';
-  display = false;
-  recipesDisplay = false;
-
-
-  instructions: object [];
-  ingredients: object [];
-  sections: object [];  
-  components: object [] = [];  
   filtered: object[] = [];
 
+  firebaseReturn;
+  pantryContents: object [] = [];
+  meatContents;
+  vegetableContents;
+  grainContents;
+  miscContents;
+  fruitContents;
+  dairyContents;
 
-  constructor(private router: Router, private searchRecipeService: SearchRecipesService) {  } 
+constructor(private router: Router, private searchRecipeService: SearchRecipesService) {  } 
 
 selectRecipeComponents(){
   
 }
 
+//combines all selected terms together for sequential search where a term will be eleminated in each search
+formatSearchTerms(){
+
+  let formatTerms=[];
+  let combinedTerm = "";
+
+  for(let items in this.selectedItems)
+  {
+    formatTerms.push(this.selectedItems[items]);
+  }
+
+  for(let term in formatTerms){      
+    combinedTerm = combinedTerm.concat(formatTerms[term]);
+    combinedTerm += " ";
+    this.searchTerms.push(combinedTerm);
+  
+  }
+  this.searchPantryRecipes();
+}
+
 
 async retrievePantry(){
-  this.firebaseReturn = await firebase_service.readCollection('Pantry');
-  console.log(JSON.stringify(this.firebaseReturn));
-  console.log(JSON.parse(JSON.stringify(this.firebaseReturn)));
+  this.firebaseReturn = await firebase_service.readCollection('users/9S4b90iYvqgswt2p0EBGWsfvO0k2/pantry');
+ // console.log(JSON.stringify(this.firebaseReturn));
+ // console.log(JSON.parse(JSON.stringify(this.firebaseReturn)));
   this.pantryContents = JSON.parse(JSON.stringify(this.firebaseReturn));
-  console.log(this.pantryContents);
+  this.meatContents = this.pantryContents[0];
+  this.vegetableContents = this.pantryContents[1];
+  this.grainContents = this.pantryContents[2];
+  this.miscContents = this.pantryContents[3];
+  this.fruitContents = this.pantryContents[4];
+  this.dairyContents = this.pantryContents[5];
+
+//  console.log(this.pantryContents);
+  
 }
   
 async searchPantryRecipes(){    
 
-  this.retrievePantry();
-
-  for(let i =this.selectedItems.length-1;i>=0; i--){
-   this.recipeSearchTerm = this.selectedItems[i];  
+  console.log("SELECTED SEARCH TERMS" + this.searchTerms);
+  
+  for(let i =this.searchTerms.length-1;i>=0; i--){
 
     console.log("i value" + i);
-    console.log("RECIPE SEARCH TERM:" + this.recipeSearchTerm);
+    console.log("RECIPE SEARCH TERM:" + this.searchTerms[i]);
          
-    this.searchRecipeService.getRecipes(this.recipeSearchTerm).subscribe(resp => {
+    this.searchRecipeService.getRecipes(this.searchTerms[i]).subscribe(resp => {
+      console.log("typeof searchterm " + typeof this.searchTerms[i]);
+      console.log("CURRENT SEARCH TERM " +this.searchTerms[i]);
     this.resultsCount += resp.count;
-    console.log(this.resultsCount);
+    console.log("response count " + this.resultsCount);
     this.recipes = resp.results;
-   
+    console.log("api response " + JSON.stringify(resp.results));    
 
     this.compilationFilter();
 
@@ -79,26 +102,24 @@ async searchPantryRecipes(){
 
    
     })      
-
-
     console.log("EXIT SEARCH SERVICE");
     console.log("RECIPES VARIABLE VALUE" + JSON.stringify(this.recipes));
-
+    
+    //wait till all terms have been searched and results combined before displaying
     await this.searchRecipeService.sleep(3000);
     if(i==0){
-      this.displayEvent.emit(this.combinedRecipes);
+      this.searchRecipeService.sharedRecipes = this.combinedRecipes;
       this.router.navigate(["recipes"]);
-      //this.recipesDisplay = true;
-    } //wait till all terms have been searched and results combined before displaying
+
+    } 
+
+    //if results are 20 or greater exit search and display
     if(this.resultsCount >= 20) {
-      this.displayEvent.emit(this.combinedRecipes);
-      this.router.navigate(["recipes"]);
-      //this.recipesDisplay = true; 
-      break;}//if results are 20 or greater exit search
+      this.searchRecipeService.sharedRecipes = this.combinedRecipes;
+      this.router.navigate(["recipes"]);   
+
+      break;}
     }
-
-
-
       console.log("EXIT LOOP");
       console.log("COMBINBED RECIPES FOR ALL SEARCH TERMS" + JSON.stringify(this.combinedRecipes));
   }
@@ -119,23 +140,5 @@ compilationFilter():void{
   }
 
 
-  instructionAndIngredientFunction(selected):void{
-    this.display = true;    
-    this.instructions = selected['instructions'];
-    this.sections = selected['sections'];
-    this.components = [];
-    console.log("instructionandIngredientFunction " + JSON.stringify(selected));
-    this.sectionDisplay();
-  }  
-
-  sectionDisplay():void{   
-    for(let section of this.sections)
-    {
-      let components: object [] = section['components'];
-      for(let component of components){
-        this.components.push(component);
-      }
-    }   
-  }  
 
 }

@@ -26,6 +26,7 @@ import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-r
     LoginComponent,
     PantryComponent,
     RecipesComponent,
+    RecipesComponent,
     FavoritesComponent,
     PageNotFoundComponent,
     ChildSearchRecipeComponent

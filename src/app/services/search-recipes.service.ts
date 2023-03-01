@@ -19,6 +19,7 @@ export class SearchRecipesService {
     'x-rapidapi-key': '47c620be6bmshcd09d2f02d1bf5dp14967ejsnbe17a2cc0cc9'
   });
 
+  sharedRecipes;
 
   sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
@@ -34,7 +35,8 @@ export class SearchRecipesService {
         // using a dropbox that lists available tags, or by using checkboxes.
         .set("tags", "")
       })
-  };
+  }
+
 
 
 };

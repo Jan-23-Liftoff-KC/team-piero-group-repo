@@ -1,38 +1,75 @@
-<div class="search-form">
-    Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="searchPantryRecipes();" name="searchRecipe" id="searchRecipe" type="text">
-    <button (click)="searchPantryRecipes();">Search</button>
- </div>
 
- <!---
 
+
+
+
+  <button (click)="retrievePantry();">Retrieve Pantry</button>
+
+
+<form>
 <div class="row">
     <div class = "column">
-      <h2 >Available from Pantry:</h2>
-      <ul>
-        <li *ngFor = 'let item of pantryContents'>{{item}}</li>
-     </ul> 
+      <h2>Meat:</h2>
+      <div *ngFor = 'let item of meatContents'>
+        <label for="item">
+          <input type="radio" id="{{item}}" name="meatSelection"  value="{{item}}" [(ngModel)]="selectedItems[0]">
+          {{item}}
+        </label>
+      </div>
     </div>
-    <div class = "column" *ngIf="recipesDisplay">
-        <h2 >Recipes:</h2>
-          <ul>
-            <li *ngFor = 'let recipe of combinedRecipes' (click)="instructionAndIngredientFunction(recipe);">{{recipe['name']}}</li>
-         </ul> 
-    </div>
-    <div class = "column" *ngIf="display">
-         <h2>Recipe Instructions:</h2>
-         <form action="/button-type"> <button type="button" onclick="alert('Recipe Added to Favorites!')">
-          Favorite</button><br><br>
-          </form>
-         <ol>
-           <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
-         </ol>
-    </div>
-    <div class = "column" *ngIf="display">
-      <h2>Ingredients:</h2>
-      <ul>
-        <li *ngFor = "let component of components">{{component['raw_text']}}</li>
-      </ul>
- </div>
-  </div>
+    
 
--->
+
+    <div class = "column">
+        <h2 >Vegetable:</h2>
+          <div *ngFor = 'let item of vegetableContents'>            
+            <label for="{{item}}">
+              <input type="radio" id="{{item}}" name="vegetableSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[1]">
+              {{item}}
+            </label>
+          </div>
+    </div>
+
+    <div class = "column">
+      <h2>Grain:</h2>
+      <div *ngFor = 'let item of grainContents'>
+        <label for="item">
+          <input type="radio" id="{{item}}" name="grainSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[2]">
+          {{item}}
+        </label>
+      </div>
+    </div>
+
+    <div class = "column">
+      <h2>Misc:</h2>
+      <div *ngFor = 'let item of miscContents'>
+        <label for="item">
+          <input type="radio" id="{{item}}" name="miscSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[3]">
+          {{item}}
+        </label>
+      </div>
+    </div>
+
+    <div class = "column">
+      <h2>Fruit:</h2>
+      <div *ngFor = 'let item of fruitContents'>
+        <label for="item">
+          <input type="radio" id="{{item}}" name="fruitSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[4]">
+          {{item}}
+        </label>
+      </div>
+    </div>
+
+    <div class = "column">
+      <h2>Dairy:</h2>
+      <div *ngFor = 'let item of dairyContents'>
+        <label for="item">
+          <input type="radio" id="{{item}}" name="dairySelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[5]">
+          {{item}}
+        </label>
+      </div>
+    </div>
+ 
+</div>
+</form>
+<button (click)="formatSearchTerms();">Search Recipes</button>

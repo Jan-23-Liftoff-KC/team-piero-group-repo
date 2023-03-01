@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
-import { RootObject, Result } from 'src/app/interfaces/recipes';
+import {  Router, RouterModule, Routes, Route } from '@angular/router';
 
-
-import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-recipe.component';
 
 @Component({
   selector: 'app-recipes',
@@ -12,7 +10,7 @@ import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-
   styleUrls: ['./recipes.component.scss']
 })
 
-export class RecipesComponent{
+export class RecipesComponent implements OnInit{
 
   recipes;
   recipesString;
@@ -31,9 +29,12 @@ export class RecipesComponent{
   thumbnailURL;
 
   //Creates a private instance of the searchRecipeService for use in this component
-  constructor(private searchRecipeService: SearchRecipesService) {  } 
-
+  constructor(private searchRecipeService: SearchRecipesService){} 
   
+  ngOnInit() {
+    this.recipes = this.searchRecipeService.sharedRecipes;
+   }
+ 
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
   
