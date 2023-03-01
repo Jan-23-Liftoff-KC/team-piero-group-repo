@@ -1,1 +1,26 @@
-<p>favorites works!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url('assets/Healthy_Foods_Background.jpg');
+        background-position: center;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="container">
+        <div class="recipeText">
+      <div class = "column" *ngIf="displayRecipes">
+            <ul>
+              <li (click)="displayRecipes();">{{['Linguini Carbonara']}}</li>
+           </ul> 
+      </div>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>

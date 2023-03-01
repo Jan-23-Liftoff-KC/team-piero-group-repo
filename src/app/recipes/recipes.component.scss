@@ -2,6 +2,12 @@
     float: left;
     width: 33%;
   }
+
+  .container {
+    width: 80%; /* Set the width of the container */
+    margin: 0 auto; /* Center the container */
+    overflow: hidden; /* Hide any overflowing content */
+  }
   
   /* Clear floats after the columns */
   .row:after {

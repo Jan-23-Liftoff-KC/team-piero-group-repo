@@ -1,0 +1,20 @@
+.column {
+    float: left;
+    width: 33%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .recipeText {
+    color: white; /* Set the text color to white */
+    font-size: 50px;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-stretch: expanded;
+    font-size-adjust: initial;
+  }
