@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingComponent } from './components/landing/landing.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { PantryComponent } from './components/pantry/pantry.component';
+import { PantryComponent } from './components/edit-pantry/edit-pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchRecipesService } from './services/search-recipes.service';

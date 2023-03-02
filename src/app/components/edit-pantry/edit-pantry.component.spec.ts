@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PantryComponent } from './pantry.component';
+import { PantryComponent } from './edit-pantry.component';
 
 describe('PantryComponent', () => {
   let component: PantryComponent;
