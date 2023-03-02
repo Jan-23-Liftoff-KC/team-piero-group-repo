@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
-import { RootObject, Result } from 'src/app/interfaces/recipes';
+import {  Router, RouterModule, Routes, Route } from '@angular/router';
 
-
-import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-recipe.component';
 
 @Component({
   selector: 'app-recipes',
@@ -12,7 +10,7 @@ import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-
   styleUrls: ['./recipes.component.scss']
 })
 
-export class RecipesComponent{
+export class RecipesComponent implements OnInit{
 
   recipes;
   recipesString;
@@ -28,11 +26,15 @@ export class RecipesComponent{
   components: object [] = [];  
   filtered: object[] = [];
   storedRecipes;
+  thumbnailURL;
 
   //Creates a private instance of the searchRecipeService for use in this component
-  constructor(private searchRecipeService: SearchRecipesService) {  } 
-
+  constructor(private searchRecipeService: SearchRecipesService){} 
   
+  ngOnInit() {
+    this.recipes = this.searchRecipeService.sharedRecipes;
+   }
+ 
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
   
@@ -50,12 +52,16 @@ export class RecipesComponent{
         this.compilationFilter();
       })
 
+      this.compilationFilter();
+
       this.display = false;
-    };
+    }
 
 
   //remove all compilation recipes to improve relevance of search results
   compilationFilter():void{
+
+    console.log(this.recipes);
     
     this.filtered = [];  // not redundant, reset recipes list between searches
   
@@ -69,8 +75,8 @@ export class RecipesComponent{
         this.filtered.push(entry);
       }
     }
-    this.recipes = this.filtered;
-  };
+    this.recipes = this.filtered;  
+  }
 
   //Function called when a user clicks a recipe name in the html view. Assigns the recipe instructions from the 
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
@@ -78,6 +84,7 @@ export class RecipesComponent{
     this.display = true;    
     this.instructions = selected['instructions'];
     this.sections = selected['sections'];
+    this.thumbnailURL = selected['thumbnail_url'];
     this.components = [];
     this.sectionDisplay();
   }  
@@ -90,14 +97,15 @@ export class RecipesComponent{
       for(let component of components){
         this.components.push(component);
       }
-
-
     }   
 
-  };
-  
+  }  
+
   filterResults(filteredRecipes) {
     this.recipes = filteredRecipes;
-  };
+  }
 
-};
+  }
+  
+
+  
