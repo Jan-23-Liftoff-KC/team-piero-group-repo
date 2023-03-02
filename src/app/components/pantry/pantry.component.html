@@ -1,1 +1,109 @@
-<p>pantry works!</p>
+
+
+<div class="bg-cover">
+  <div class="heading">
+    <button class="myButton" (click)="retrievePantry();">Retrieve Pantry</button>
+    <button class="myButton" (click)="formatSearchTerms();">Search Recipes</button>
+  </div>
+
+  <!-- meat card -->
+  <div class="container mx-auto mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="./assets/Meat.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h2 class="card-title">Meat</h2>
+            <div class="card-text" *ngFor = 'let item of meatContents'>
+              <label for="item">
+                <input type="radio" id="{{item}}" name="meatSelection"  value="{{item}}" [(ngModel)]="selectedItems[0]">
+                {{item}}
+              </label>
+            </div>
+          </div>
+        </div>
+    </div>  
+
+    <!-- Vegetable card -->
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="./assets/Vegetable.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h2 class="card-title">Vegetable</h2>
+            <div class="card-text" *ngFor = 'let item of vegetableContents'>            
+              <label for="{{item}}">
+                <input type="radio" id="{{item}}" name="vegetableSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[1]">
+                {{item}}
+              </label>
+            </div>
+          </div>
+        </div>
+    </div>  
+
+    <!-- Grain card -->
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="./assets/Grain.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h2 class="card-title">Grain</h2>
+            <div class="card-text" *ngFor = 'let item of grainContents'>
+              <label for="item">
+                <input type="radio" id="{{item}}" name="grainSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[2]">
+                {{item}}
+              </label>
+            </div>
+          </div>
+        </div>
+    </div>  
+  </div>
+
+  <!-- second row -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/Misc.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">Misc</h2>
+          <div class="card-text" *ngFor = 'let item of miscContents'>
+            <label for="item">
+              <input type="radio" id="{{item}}" name="miscSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[3]">
+              {{item}}
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>  
+
+  <!-- Fruits card -->
+  <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/Fruits.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">Fruits</h2>
+          <div class="card-text" *ngFor = 'let item of fruitContents'>
+            <label for="item">
+              <input type="radio" id="{{item}}" name="fruitSelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[4]">
+              {{item}}
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>  
+
+  <!-- Grain card -->
+  <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/Dairy_cheese.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">Dairy</h2>
+          <div class="card-text" *ngFor = 'let item of dairyContents'>
+            <label for="item">
+              <input type="radio" id="{{item}}" name="dairySelection" type="radio" value="{{item}}" [(ngModel)]="selectedItems[5]">
+              {{item}}
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>  
+</div>
+</div>

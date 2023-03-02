@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private matSnackBar: MatSnackBar) { }
 
+  getUrl()
+{
+  return "url('assets/joanna-kosinska-i0IvwAhhGZM-unsplash.jpg')";
+}
+
   ngOnInit(): void {
   }
 
