@@ -1,5 +1,4 @@
 <button (click)="routeToPantry();">Go Back To My Pantry</button><br><br>
-<button (click)="editFirebase();">Edit Firebase</button><br><br>
 
 <div>
     <label for="categories">Choose a category for your ingredient:</label>
@@ -15,7 +14,7 @@
  <ng-container *ngIf="ingredients">
     <ng-container *ngFor="let ingredient of ingredients; let i = index">
         <div *ngIf="i < 10">
-            <button type="button" class="btn btn-primary" (click)="addPantryItem(ingredient)">{{ingredient}}</button><br><br>
+            <button type="button" class="btn btn-primary" (click)="editPantryItem(ingredient)">{{ingredient}}</button><br><br>
         </div>
     </ng-container>
  </ng-container> 

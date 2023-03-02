@@ -27,9 +27,8 @@ export class EditPantryComponent implements OnInit {
     'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
   });
 
-  getRecipes() {
-    console.log('Pantry Search Activated');
-    
+  //Searches Yummly API to get a list of ingredients based on user's search.
+  getRecipes() { 
     this.http.get('https://yummly2.p.rapidapi.com/feeds/auto-complete', {
       headers: this.headers,
       params: new HttpParams()
@@ -41,23 +40,27 @@ export class EditPantryComponent implements OnInit {
   };
 
   //Function used to update the pantryCollection variable if an object is added/removed. Called within
-  //the addPantryItem function.
+  //the function: editPantryItem.
   retrievePantry() {
     firebase_service.readCollection('users/dummy_user/pantry').then(data => {
       this.pantryCollection = data;
     });
   }
   
+  //Retrieves a user's entire pantry on page load
   ngOnInit(): void {
     this.retrievePantry()
   }
 
-  addPantryItem(ingredient) {
+  //Function to add or remove the selected pantry item from the selected category, depending 
+  //on whether the user's pantry already contains the item or not; also updates the locally stored
+  //version of the user's pantry via function: retrievePantry.
+  editPantryItem(ingredient) {
     try {
 
     let newArray = this.pantryCollection
     let adjustedCategory = newArray[this.selectedCategory.toLowerCase()]
-    console.log(newArray)
+
     if (adjustedCategory.includes(ingredient)) {
       if (confirm('This item is already in your pantry.' + '\n' + 'Press OK to remove it from your pantry.')) {
  
@@ -75,9 +78,7 @@ export class EditPantryComponent implements OnInit {
       this.retrievePantry();
     };  
 
-    console.log(newArray);
-    console.log(this.pantryCollection);
-
+    //Catches and alerts user if they don't choose a category
     } catch (err) {
       alert(`Don't forget to choose which category your ingredient belongs to!`)
     }
@@ -87,21 +88,4 @@ export class EditPantryComponent implements OnInit {
     this.router.navigate(["pantry"]);
   };
 
-  editFirebase() {
-    let payload = [
-      'milk',
-      'coconut milk',
-      'chocolate milk'
-    ];
-    let category = 'dairy'
-
-    firebase_service.createCollection(`users/dummy_user/pantry/${category}`, payload)
-    
-    // firebase_service.readCollection(`users/dummy_user/pantry/`).then((data) => console.log(data))
-    // firebase_service.readCollection(`users/dummy_user/pantry/${category}`).then((data) => console.log(data))
-
-    console.log(this.selectedCategory);
-
-  }
-
-}
+};
