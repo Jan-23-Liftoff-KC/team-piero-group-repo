@@ -51,12 +51,16 @@ export class PantryComponent implements OnInit {
     let newArray = this.pantryCollection
     console.log(typeof(newArray))
     if (newArray.includes(ingredient)) {
+      if (confirm(`This item is already in your pantry. 
+      
+Press OK to remove it from your pantry.`)) {
  
       let index = Object.values(newArray).indexOf(ingredient);
       newArray.splice(index, 1);
       firebase_service.createCollection('users/dummy_user/pantry', newArray);
       alert("The selected item has been removed from your pantry.");
       this.retrievePantry();
+      }      
 
     } else {
       newArray.push(ingredient)
