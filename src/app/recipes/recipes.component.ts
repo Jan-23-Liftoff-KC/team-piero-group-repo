@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
+import { RootObject, Result } from 'src/app/interfaces/recipes';
+import { firebase_service } from 'src/firebase/firebase.service';
 import { User } from 'firebase/auth';
 import { auth } from 'src/firebase/firebase.init';
 
@@ -48,6 +50,7 @@ export class RecipesComponent implements OnInit{
         this.user_id = user.uid;
       }
     });
+    this.storedRecipes = this.recipes;//sets input value for child-search-recipes.component to this.recipes value, used to filter results
    }
  
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
@@ -120,6 +123,3 @@ export class RecipesComponent implements OnInit{
   }
 
 }
-  
-
-  

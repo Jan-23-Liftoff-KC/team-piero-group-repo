@@ -7,6 +7,7 @@ import { PantryComponent } from './components/pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EditPantryComponent } from './components/edit-pantry/edit-pantry.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'pantry',
     component: PantryComponent
+  },
+  {
+    path: 'pantry/edit-pantry',
+    component: EditPantryComponent
   },
   {
     path: 'recipes',

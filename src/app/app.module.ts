@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditPantryComponent } from './components/edit-pantry/edit-pantry.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RecipesComponent,
     FavoritesComponent,
     PageNotFoundComponent,
-    ChildSearchRecipeComponent
+    ChildSearchRecipeComponent,
+    EditPantryComponent
   ],
   imports: [
     BrowserModule,

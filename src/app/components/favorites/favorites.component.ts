@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'firebase/auth';
 import { auth } from 'src/firebase/firebase.init';
+import { firebase_service } from 'src/firebase/firebase.service';
 
 @Component({
   selector: 'app-favorites',
@@ -22,4 +23,11 @@ export class FavoritesComponent implements OnInit {
       }
     });
   }
+  callFavorites() {
+    const user_id = "dummy_user"
+    firebase_service.readCollection(`users/${user_id}/favorite_recipes`).then((data) => {
+      console.log(data)
+    })
+  }
+
 }
