@@ -52,17 +52,27 @@ export class PantryComponent {
     this.searchPantryRecipes();
   };
 
-
   async retrievePantry() {
-    this.firebaseReturn = await firebase_service.readCollection('users/9S4b90iYvqgswt2p0EBGWsfvO0k2/pantry');
+    this.firebaseReturn = await firebase_service.readCollection('users/dummy_user/pantry');
     this.pantryContents = JSON.parse(JSON.stringify(this.firebaseReturn)); //stringify and parse to avoid errors in browser regarding non-interable variables
-    this.meatContents = this.pantryContents[0];
-    this.vegetableContents = this.pantryContents[1];
-    this.grainContents = this.pantryContents[2];
-    this.miscContents = this.pantryContents[3];
-    this.fruitContents = this.pantryContents[4];
-    this.dairyContents = this.pantryContents[5];
+    this.meatContents = this.pantryContents['meat'].map(x => this.toTitleCase(x));
+    this.vegetableContents = this.pantryContents['vegetable'].map(x => this.toTitleCase(x));
+    this.grainContents = this.pantryContents['grain'].map(x => this.toTitleCase(x));
+    this.miscContents = this.pantryContents['misc'].map(x => this.toTitleCase(x));
+    this.fruitContents = this.pantryContents['fruit'].map(x => this.toTitleCase(x));
+    this.dairyContents = this.pantryContents['dairy'].map(x => this.toTitleCase(x));
   };
+  
+  toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  };
+
+
 
   async searchPantryRecipes() {
 
