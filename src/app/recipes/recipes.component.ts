@@ -26,7 +26,12 @@ export class RecipesComponent implements OnInit{
   components: object [] = [];  
   filtered: object[] = [];
   storedRecipes;
-  thumbnailURL;
+  thumbnailURL: object[];
+  recipeName: object[];
+  yieldAmount: object[];
+  cookTime: object[];
+  prepTime: object[];
+  
 
   user: User = null;
   user_id: string = null;
@@ -87,11 +92,16 @@ export class RecipesComponent implements OnInit{
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
   instructionAndIngredientFunction(selected):void{
     this.display = true;    
+    this.recipeName = selected['name'];
     this.instructions = selected['instructions'];
     this.sections = selected['sections'];
     this.thumbnailURL = selected['thumbnail_url'];
     this.components = [];
     this.sectionDisplay();
+    this.thumbnailURL = selected['thumbnail_url']; 
+    this.yieldAmount = selected['yields']; 
+    this.cookTime = selected['cook_time_minutes'];
+    this.prepTime = selected['prep_time_minutes'];
   }  
 
   //function to retrieve all ingredients from nested JSON object
