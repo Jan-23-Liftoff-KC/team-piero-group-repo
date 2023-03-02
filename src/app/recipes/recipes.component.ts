@@ -3,15 +3,14 @@ import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
 import { firebase_service } from 'src/firebase/firebase.service';
 
-
-
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
+  // templateUrl: 'src/app/recipes/recipes.component.html',
   styleUrls: ['./recipes.component.scss']
 })
 
-export class RecipesComponent{
+export class RecipesComponent implements OnInit{
 
   recipes;
   recipesString;
@@ -26,25 +25,37 @@ export class RecipesComponent{
   sections: object [];  
   components: object [] = [];  
   filtered: object[] = [];
+  storedRecipes;
+  thumbnailURL: object[];
+  recipeName: object[];
+  yieldAmount: object[];
+  cookTime: object[];
+  prepTime: object[];
+  
 
   //Creates a private instance of the searchRecipeService for use in this component
-  constructor(private searchRecipeService: SearchRecipesService) {  } 
-
+  constructor(private searchRecipeService: SearchRecipesService){} 
   
+  ngOnInit() {
+    this.recipes = this.searchRecipeService.sharedRecipes; //check for shared combinedRecipes from pantry.component to display
+    this.storedRecipes = this.recipes;//sets input value for child-search-recipes.component to this.recipes value, used to filter results
+   }
+ 
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
   
-  onSubmit() { 
-    
+  onSubmit() {     
     this.searchRecipeService.getRecipes(this.recipeSearchTerm)
       .subscribe(resp => {
         this.resultsCount = resp.count;
         this.recipes = resp.results;
+        this.storedRecipes = resp.results;  
 
         this.recipesString = JSON.stringify(this.recipes); //results are stringifyed then parsed to create iterable list for compilationFilter
         this.recipes = JSON.parse(this.recipesString);        
         this.compilationFilter();
       })
+      this.compilationFilter();
 
       this.display = false;
     }
@@ -52,14 +63,14 @@ export class RecipesComponent{
 
   //remove all compilation recipes to improve relevance of search results
   compilationFilter():void{
+    console.log(this.recipes);
     
     this.filtered = [];  // not redundant, reset recipes list between searches
   
     for(let entry of this.recipes){
   
       if(entry['canonical_id'].includes('compilation'))
-      {      
-
+      {//compilations are removed
       }
       else{   
         this.filtered.push(entry);
@@ -72,14 +83,20 @@ export class RecipesComponent{
   //API response to the "instructions" array on line 24, which is then displayed by the loop in html file, line 19.
   instructionAndIngredientFunction(selected):void{
     this.display = true;    
+    this.recipeName = selected['name'];
     this.instructions = selected['instructions'];
     this.sections = selected['sections'];
+    this.thumbnailURL = selected['thumbnail_url'];
     this.components = [];
     this.sectionDisplay();
+    this.thumbnailURL = selected['thumbnail_url']; 
+    this.yieldAmount = selected['yields']; 
+    this.cookTime = selected['cook_time_minutes'];
+    this.prepTime = selected['prep_time_minutes'];
   }  
 
+  //function to retrieve all ingredients from nested JSON object
   sectionDisplay():void{   
-
     for(let section of this.sections)
     {
       let components: object [] = section['components'];
@@ -87,7 +104,10 @@ export class RecipesComponent{
         this.components.push(component);
       }
     }   
-
   }  
+
+  filterResults(filteredRecipes) {
+    this.recipes = filteredRecipes;
+  }
 
 }

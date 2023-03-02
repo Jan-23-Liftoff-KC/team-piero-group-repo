@@ -15,6 +15,9 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChildSearchRecipeComponent } from './child-search-recipe/child-search-recipe.component';
+import { EditPantryComponent } from './components/edit-pantry/edit-pantry.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +27,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginComponent,
     PantryComponent,
     RecipesComponent,
+    RecipesComponent,
     FavoritesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ChildSearchRecipeComponent,
+    EditPantryComponent
   ],
   imports: [
     BrowserModule,

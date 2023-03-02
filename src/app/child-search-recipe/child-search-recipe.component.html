@@ -1,0 +1,27 @@
+<button class="myButton" (click)="showFilters()">Show Filters</button>
+<button class="myButton" (click)="clearFilterOptions()">Clear Filters</button>
+
+
+<div  class="scrollbox" id="overlay" (click)="showFiltersOff()">
+
+    <form [formGroup]="filterForm">
+
+        <ng-container *ngFor="let category of tagCategories.name; let i = index">
+            <div class="boxList">
+                <h3>{{tagCategories.display_name[i]}}</h3>
+                <div *ngFor="let tag of apiTags.results" formArrayName="tags">
+                    <div *ngIf="tag.type === category" (change)="addFilterTerm($event)">
+                        <input type="checkbox" id="{{ tag.name }}" value="{{ tag.name }}" 
+                                (click)="stopPropagation($event)">                    
+                        <label class="filterLabel" for="{{ tag.name }}" 
+                                (click)="stopPropagation($event)">{{tag.display_name}}</label><br>
+                    </div>
+                </div>     
+            </div>            
+        </ng-container>
+
+    </form>
+
+    <button class="fixed-bottom" style="height: 50px;" id="filterApply" (click)="filterOriginalRecipes()">Apply</button>
+
+</div>
