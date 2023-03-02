@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { auth } from 'src/firebase/firebase.init';
+import { User } from "firebase/auth";
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
 
@@ -7,7 +11,11 @@ import { RootObject, Result } from 'src/app/interfaces/recipes';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+ 
+export class HomeComponent implements OnInit {
+
+  user: User = null;
+
   recipes;
   recipesString;
   resultsCount;
@@ -29,8 +37,19 @@ export class HomeComponent {
   
 
   //Creates a private instance of the searchRecipeService for use in this component
-  constructor(private searchRecipeService: SearchRecipesService) {  } 
+  constructor(private searchRecipeService: SearchRecipesService, private matSnackBar: MatSnackBar, private router: Router) {  } 
 
+  // Obserable that keeps track of user status (login/logout)
+  ngOnInit(): void {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        console.log(user);
+        this.user = user;
+      } else {
+        console.log("no user logged in");
+      }
+    });
+  }
   
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
@@ -97,5 +116,14 @@ export class HomeComponent {
     }   
 
   }  
+
+  signOut() {
+    if(this.user) {
+      auth.signOut().catch((err) => console.log(err));
+      this.matSnackBar.open("signed out successfully", "CLOSE");
+      this.router.navigate([""]);
+    }
+    
+  }
 
 }

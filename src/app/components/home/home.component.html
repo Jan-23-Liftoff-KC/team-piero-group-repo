@@ -1,3 +1,16 @@
+
+<div class="card" style="width: 18rem;" *ngIf="user">
+  <img class="card-img-top" src="..." alt="user profile image">
+
+  <div class="card-body">
+    <h1 class="card-title">Welcome</h1>
+    <p class="card-text">{{user.email}}</p>
+    <div>
+      <button class="btn btn-primary" (click)="signOut()" disabled="user">sign out</button>
+    </div>
+  </div>
+
+</div>
 <body>
    <div class="search-form">
             <div class="row height d-flex justify-content-center align-items-center">

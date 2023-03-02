@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { RootObject, Result } from 'src/app/interfaces/recipes';
 import { firebase_service } from 'src/firebase/firebase.service';
+import { User } from 'firebase/auth';
+import { auth } from 'src/firebase/firebase.init';
 
 @Component({
   selector: 'app-recipes',
@@ -33,11 +35,21 @@ export class RecipesComponent implements OnInit{
   prepTime: object[];
   
 
+  user: User = null;
+  user_id: string = null;
+
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService){} 
   
-  ngOnInit() {
+  ngOnInit(): void {
     this.recipes = this.searchRecipeService.sharedRecipes; //check for shared combinedRecipes from pantry.component to display
+
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        this.user = user;
+        this.user_id = user.uid;
+      }
+    });
     this.storedRecipes = this.recipes;//sets input value for child-search-recipes.component to this.recipes value, used to filter results
    }
  

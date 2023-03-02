@@ -1,7 +1,9 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
 import { firebase_service } from 'src/firebase/firebase.service';
 import {  Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import { auth } from 'src/firebase/firebase.init';
 
 
 @Component({
@@ -31,7 +33,19 @@ export class PantryComponent {
   fruitContents;
   dairyContents;
 
+  user: User = null;
+  user_id: string = null;
+
   constructor(private router: Router, private searchRecipeService: SearchRecipesService) { }
+
+ngOnInit(): void {
+  auth.onAuthStateChanged(user => {
+    if(user) {
+      this.user = user;
+      this.user_id = user.uid;
+    }
+  });
+}
 
   //combines all selected terms together for sequential search where a term will be eleminated in each search
   formatSearchTerms() {
@@ -53,7 +67,7 @@ export class PantryComponent {
   };
 
   async retrievePantry() {
-    this.firebaseReturn = await firebase_service.readCollection('users/dummy_user/pantry');
+    this.firebaseReturn = await firebase_service.readCollection(`users/${this.user_id}/pantry`);
     this.pantryContents = JSON.parse(JSON.stringify(this.firebaseReturn)); //stringify and parse to avoid errors in browser regarding non-interable variables
     this.meatContents = this.pantryContents['meat'].map(x => this.toTitleCase(x));
     this.vegetableContents = this.pantryContents['vegetable'].map(x => this.toTitleCase(x));
@@ -121,6 +135,5 @@ export class PantryComponent {
   routeToEditPantry() {
     this.router.navigate(["pantry/edit-pantry"]);
   };
-
 
 }
