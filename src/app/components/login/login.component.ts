@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["recipes"]);
       }
     }).catch((error) => {
-      this.matSnackBar.open("The following ERROR occurred:\n" + String(error));
+      this.matSnackBar.open(String(error));
       this.router.navigate(["signup"]);
     });
   };

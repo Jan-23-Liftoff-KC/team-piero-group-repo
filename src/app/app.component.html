@@ -17,6 +17,7 @@
         <a class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
+    <button type="button" class="btn btn-outline-info btn-sm" (click)="signOut()" *ngIf="user">Logout</button>
   </div>
 </nav>
 
