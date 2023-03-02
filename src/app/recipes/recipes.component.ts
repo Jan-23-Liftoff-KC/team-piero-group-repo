@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
-import {  Router, RouterModule, Routes, Route } from '@angular/router';
-
 
 @Component({
   selector: 'app-recipes',
@@ -32,26 +30,23 @@ export class RecipesComponent implements OnInit{
   constructor(private searchRecipeService: SearchRecipesService){} 
   
   ngOnInit() {
-    this.recipes = this.searchRecipeService.sharedRecipes;
+    this.recipes = this.searchRecipeService.sharedRecipes; //check for shared combinedRecipes from pantry.component to display
    }
  
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
   //The function assigns the returned recipes to the 'recipes' variable on line 15
   
-  onSubmit() { 
-    
+  onSubmit() {     
     this.searchRecipeService.getRecipes(this.recipeSearchTerm)
       .subscribe(resp => {
         this.resultsCount = resp.count;
         this.recipes = resp.results;
         this.storedRecipes = resp.results;  
 
-
         this.recipesString = JSON.stringify(this.recipes); //results are stringifyed then parsed to create iterable list for compilationFilter
         this.recipes = JSON.parse(this.recipesString);        
         this.compilationFilter();
       })
-
       this.compilationFilter();
 
       this.display = false;
@@ -60,7 +55,6 @@ export class RecipesComponent implements OnInit{
 
   //remove all compilation recipes to improve relevance of search results
   compilationFilter():void{
-
     console.log(this.recipes);
     
     this.filtered = [];  // not redundant, reset recipes list between searches
@@ -68,8 +62,7 @@ export class RecipesComponent implements OnInit{
     for(let entry of this.recipes){
   
       if(entry['canonical_id'].includes('compilation'))
-      {      
-
+      {//compilations are removed
       }
       else{   
         this.filtered.push(entry);
@@ -89,8 +82,8 @@ export class RecipesComponent implements OnInit{
     this.sectionDisplay();
   }  
 
+  //function to retrieve all ingredients from nested JSON object
   sectionDisplay():void{   
-
     for(let section of this.sections)
     {
       let components: object [] = section['components'];
@@ -98,14 +91,13 @@ export class RecipesComponent implements OnInit{
         this.components.push(component);
       }
     }   
-
   }  
 
   filterResults(filteredRecipes) {
     this.recipes = filteredRecipes;
   }
 
-  }
+}
   
 
   
