@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { firebase_service } from 'src/firebase/firebase.service';
 import {  Router } from '@angular/router';
+import { getTrailingCommentRanges } from 'typescript';
 
 
 
@@ -14,7 +15,8 @@ export class EditPantryComponent implements OnInit {
 
   pantrySearchTerm = '';
   pantrySearchCategory = '';
-
+  pantryCategories = ['Meat', 'Vegetable', 'Grain', 'Misc', 'Fruit', 'Dairy']
+  selectedCategory;
   ingredients;
   pantryCollection;
 
@@ -42,7 +44,7 @@ export class EditPantryComponent implements OnInit {
   //the addPantryItem function.
   retrievePantry() {
     firebase_service.readCollection('users/dummy_user/pantry').then(data => {
-      this.pantryCollection = Object.values(data);
+      this.pantryCollection = data;
     });
   }
   
@@ -51,32 +53,55 @@ export class EditPantryComponent implements OnInit {
   }
 
   addPantryItem(ingredient) {
+    try {
 
     let newArray = this.pantryCollection
-    console.log(typeof(newArray))
-    if (newArray.includes(ingredient)) {
-      if (confirm(`This item is already in your pantry. 
-      
-Press OK to remove it from your pantry.`)) {
+    let adjustedCategory = newArray[this.selectedCategory.toLowerCase()]
+    console.log(newArray)
+    if (adjustedCategory.includes(ingredient)) {
+      if (confirm('This item is already in your pantry.' + '\n' + 'Press OK to remove it from your pantry.')) {
  
-      let index = Object.values(newArray).indexOf(ingredient);
-      newArray.splice(index, 1);
-      firebase_service.createCollection('users/dummy_user/pantry', newArray);
+      let index = adjustedCategory.indexOf(ingredient);
+      adjustedCategory.splice(index, 1);
+      firebase_service.createCollection(`users/dummy_user/pantry/${this.selectedCategory.toLowerCase()}`, adjustedCategory);
       alert("The selected item has been removed from your pantry.");
       this.retrievePantry();
       }      
 
     } else {
-      newArray.push(ingredient)
-      firebase_service.createCollection('users/dummy_user/pantry', newArray);
+      adjustedCategory.push(ingredient)
+      firebase_service.createCollection(`users/dummy_user/pantry/${this.selectedCategory.toLowerCase()}`, adjustedCategory);
       alert("The selected item has been added to your pantry.");
       this.retrievePantry();
     };  
 
+    console.log(newArray);
+    console.log(this.pantryCollection);
+
+    } catch (err) {
+      alert(`Don't forget to choose which category your ingredient belongs to!`)
+    }
   };
 
   routeToPantry() {
     this.router.navigate(["pantry"]);
   };
+
+  editFirebase() {
+    let payload = [
+      'milk',
+      'coconut milk',
+      'chocolate milk'
+    ];
+    let category = 'dairy'
+
+    firebase_service.createCollection(`users/dummy_user/pantry/${category}`, payload)
+    
+    // firebase_service.readCollection(`users/dummy_user/pantry/`).then((data) => console.log(data))
+    // firebase_service.readCollection(`users/dummy_user/pantry/${category}`).then((data) => console.log(data))
+
+    console.log(this.selectedCategory);
+
+  }
 
 }

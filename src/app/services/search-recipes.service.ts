@@ -16,7 +16,7 @@ export class SearchRecipesService {
 
   headers = new HttpHeaders({
     'x-rapidapi-host': 'tasty.p.rapidapi.com',
-    'x-rapidapi-key': '47c620be6bmshcd09d2f02d1bf5dp14967ejsnbe17a2cc0cc9'
+    'x-rapidapi-key': '8e9ce7f477msh40b82ac9d302838p13788cjsnddd4f2e06d64'
   });
 
   sharedRecipes; //used to share recipes for display between pantry.compnent and recipes.component
