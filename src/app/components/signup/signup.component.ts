@@ -9,6 +9,11 @@ export class SignupComponent implements OnInit {
 
   constructor() { }
 
+  getUrl()
+  {
+    return "url('assets/geo-darwin-zdunBSAi3P0-unsplash.jpg')";
+  }
+
   ngOnInit(): void {
   }
 

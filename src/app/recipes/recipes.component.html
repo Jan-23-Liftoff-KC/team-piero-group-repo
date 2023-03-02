@@ -1,4 +1,4 @@
-<div class="search-form">
+<!-- <div class="search-form">
     Search: <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" type="text">
     <button (click)="onSubmit()">Search</button>
  </div>
@@ -28,6 +28,107 @@
         <li *ngFor = "let component of components">{{component['raw_text']}}</li>
       </ul>
  </div>
-  </div>
+  </div> -->
 
 
+  <body>
+    <div class="search-form">
+             <div class="row height d-flex justify-content-center align-items-center">
+                 <div class="col-md-6">
+                     <div class="form">
+                         <i class="fa fa-search"></i>
+                         <input [(ngModel)]="recipeSearchTerm" type="text" (keyup.enter)="onSubmit()" name="searchRecipe" id="searchRecipe" class="form-control form-input" placeholder="  Search for recipe...">
+                         <!-- <button (click)="onSubmit()">Search</button> -->
+                         <child-search-recipe [originalRecipes]="storedRecipes" (filterEvent)="filterResults($event)"></child-search-recipe>
+                     </div>
+                 </div>
+             </div>
+     </div>
+     
+     <div class = "container_display">
+     <div class="search-result">
+         <article class="recipe-list">
+             <div class = "column" *ngIf="recipes">
+             <header>
+                 <h1 class="recipe-title"><span>Recipes</span></h1>
+             </header> 
+             <main class="recipe-list__profiles" *ngFor = 'let recipe of recipes'>
+                 <article class="recipe-list__profile">
+                     <img src="{{recipe['thumbnail_url']}}" alt="food" class="recipe-list__picture">
+                     <span class="recipe-list__name">
+                         <ul>
+                             <li class="list-display" (click)="instructionAndIngredientFunction(recipe);">{{recipe['name']}}</li>
+                         </ul> 
+                     </span>
+                 </article>
+             </main>
+             </div>
+         </article>
+     </div>
+     <div class="recipe-card">
+         <div class="container" *ngIf="display">
+ 
+             <img src={{thumbnailURL}}/>
+         <div class="container__text">
+             <div class="row">
+                 <h1>{{recipeName}}</h1>
+             </div>
+         <div class="row">
+             <div class="cooking-info">
+                 <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                     <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                 </svg>Prep Time: {{prepTime}}  </h3>
+                     <!-- <p>{{yieldAmount}}</p> -->
+             </div>
+                 <div class="cooking-info">
+                 <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                     <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                 </svg>Total Time: {{cookTime}}  </h3>
+                     <!-- <p>40 min</p> -->
+                 </div>
+                 <div class="cooking-info">
+                 <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                     <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                 </svg>{{yieldAmount}}</h3>
+                     <!-- <p>{{yieldAmount}}</p> -->
+                 </div>
+             </div>
+ 
+             <!-- ingredients section -->
+ 
+             <h2 class = "ingredients">Ingredients:</h2>
+             <div class = "row" *ngIf="display">
+                 <div class="box"> 
+                     <ul id="circle">
+                         <li *ngFor = "let component of components">{{component['raw_text']}}</li>
+                     </ul>
+                 </div>    
+             </div>
+ 
+         <br>
+             <!-- instruction section -->
+             <div class = "row" *ngIf="display">
+                 <h2>Recipe Instructions:</h2>
+                 <span class="box">
+                     <ol>
+                         <li *ngFor = "let instruction of instructions">{{instruction['display_text']}}</li>
+                     </ol>
+                 </span> 
+         </div>
+             <!-- favorite button section -->
+             <div class = "row" *ngIf="display">
+                 <form action="/button-type">
+                     <button class="btn" type="button" onclick="alert('Recipe Added to Favorites!')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                     </svg> Save Recipe 
+                     </button>
+                 </form> 
+             </div>   
+         </div>
+     </div>
+     </div>
+ </div> 
+ 
+ </body>   

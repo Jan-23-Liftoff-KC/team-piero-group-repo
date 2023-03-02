@@ -1,11 +1,222 @@
-.column {
-    float: left;
-    width: 33%;
+
+$primary-color: #fff;
+$border-radius: 10px;
+$body-color: #749D56;
+$black-color: #454321;
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body{
+  background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+  background-size: cover;
+
+}
+
+.container_display{
+
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
+}
+.search-result{
+  width: 25%;
+  height: 500px;
+  float: left;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  overflow: scroll;
+
+}
+
+.search-form{
+  padding-top: 30px;
+  margin: auto;
+}
+
+.recipe-card{
+  width: 75%;
+  float: left;
+  padding: 10px;
+}
+
+
+.container {
+ background-color: #F9FAF2;
+ position: relative;
+ display: grid;
+ grid-template-columns: 300px 600px;
+ border-radius: $border-radius;
+ box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+ margin: auto;
+ margin-top: 10px;
+ padding-bottom: 50px;
+ box-sizing: content-box;
+ height: inherit;
+ ;
+
+ .cooking-info{
+   padding-left: 5px;
+ }
+
+ img {
+  width: 300px;
+  height: 300px;
+  border-radius: 30px;
+  margin: 20px;
+  padding: 5px;
+  object-fit: cover;
+ }
+
+ .btn {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #fc9400;
+  color: $primary-color;
+  padding: 22px 45px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: $border-radius;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+ }
+
+ svg{
+     padding-right: 5px;
+ }
+}
+
+.container__text {
+ padding: 40px 40px 0;
+
+ h1 {
+  color: $black-color;
+  font-weight: 400;
+ }
+
+ p {
+  font-size: 0.9rem;
+ }
+
+  h2 {
+   margin-bottom: 5px;
+   font-size: 1rem;
+   font-weight: 400;
+   color: #818189;
+  }
+  p {
+   color: $black-color;
+   font-weight: bold;
+   font-size: 1.2rem;
+  }
+}
+
+
+.box {
+  width: 600px;
+  height: 100px;
+  overflow: scroll;
+}
+
+#circle{
+  list-style-type: circle;
+  margin-left: 1rem;
+}
+
+#searchRecipe{
+  padding-left: 10px;
+}
+
+
+//list styling
+
+.recipe-list {
+  max-width: 360px;
+  width: 100%;
+  border-radius: 10px;
+
+
+  header {
+    --start: 15%;
+    height: 50px;
+    background-image: repeating-radial-gradient(circle at var(--start), transparent 0%, transparent 10%, rgba(249, 250, 242, 0.37) 10%, rgba(249, 250, 242, .33) 17%), linear-gradient(to right, #F9FAF2, #749D56);
+    color: #fff;
+    position: relative;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    
+    .recipe-title {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      right: calc(var(--start) * .75);
+      transform: translateY(-50%);
+      text-transform: uppercase;
+      margin: 0;
+      font-weight: 300;
+      
+      span {
+        display: block;
+      }
+    }
   }
   
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
+  &__profiles {
+    background-color: #fff;
+    border-radius: 0 0 12px 12px;
+    padding: 10px;
+    display: grid;
+    row-gap: 6px;
   }
+  
+  &__profile {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    padding: 10px 20px 10px 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 7px -1px rgba(51, 51, 51, 0.23);
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.7,.98,.86,.98), box-shadow .25s cubic-bezier(.7,.98,.86,.98);
+    background-color: #fff;
+    
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+    }
+  }
+  
+  &__picture {
+    max-width: 100%;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #ebeef3, 0 0 0 22px #f3f4f6;
+  }
+  
+  &__name {
+    color: #979cb0;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.64px;
+    margin-left: 12px;
+  }
+  
+}
+
+.list-display{
+  list-style: none;
+}
+
+        
