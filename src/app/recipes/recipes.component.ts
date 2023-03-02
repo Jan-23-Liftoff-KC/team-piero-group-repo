@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
+import { RootObject, Result } from 'src/app/interfaces/recipes';
+import { firebase_service } from 'src/firebase/firebase.service';
 
 @Component({
   selector: 'app-recipes',
@@ -109,6 +111,3 @@ export class RecipesComponent implements OnInit{
   }
 
 }
-  
-
-  
