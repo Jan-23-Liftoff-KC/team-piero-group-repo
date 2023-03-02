@@ -4,9 +4,9 @@ import { firebase_service } from 'src/firebase/firebase.service';
 
 
 @Component({
-  selector: 'edit-pantry',
-  templateUrl: './edit-pantry.component.html',
-  styleUrls: ['./edit-pantry.component.scss']
+  selector: 'app-pantry',
+  templateUrl: './pantry.component.html',
+  styleUrls: ['./pantry.component.scss']
 })
 export class PantryComponent implements OnInit {
 

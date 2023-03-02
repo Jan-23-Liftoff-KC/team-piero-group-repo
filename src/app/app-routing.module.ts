@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
-import { PantryComponent } from './components/edit-pantry/edit-pantry.component';
+import { PantryComponent } from './components/pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
