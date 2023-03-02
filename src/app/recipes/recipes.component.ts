@@ -36,6 +36,7 @@ export class RecipesComponent implements OnInit{
   
   ngOnInit() {
     this.recipes = this.searchRecipeService.sharedRecipes; //check for shared combinedRecipes from pantry.component to display
+    this.storedRecipes = this.recipes;//sets input value for child-search-recipes.component to this.recipes value, used to filter results
    }
  
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
