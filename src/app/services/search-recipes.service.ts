@@ -19,8 +19,10 @@ export class SearchRecipesService {
     'x-rapidapi-key': '47c620be6bmshcd09d2f02d1bf5dp14967ejsnbe17a2cc0cc9'
   });
 
-  sharedRecipes;
+  sharedRecipes; //used to share recipes for display between pantry.compnent and recipes.component
 
+
+  //used in pantry.component to prevent too many requests error during looped api search
   sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
     }
