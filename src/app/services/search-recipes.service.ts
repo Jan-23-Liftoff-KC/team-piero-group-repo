@@ -8,18 +8,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
+
+
 export class SearchRecipesService {
 
   constructor(private http: HttpClient) { }
 
   headers = new HttpHeaders({
     'x-rapidapi-host': 'tasty.p.rapidapi.com',
-    'x-rapidapi-key': '7c74d55e43msh895d92d3174837fp19733djsn47065daa1688'
+    'x-rapidapi-key': '47c620be6bmshcd09d2f02d1bf5dp14967ejsnbe17a2cc0cc9'
   });
 
+  sharedRecipes; //used to share recipes for display between pantry.compnent and recipes.component
+
+
+  //used in pantry.component to prevent too many requests error during looped api search
+  sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time))
+    }
+
   getRecipes(searchTerm: string): Observable<RootObject> {
-    return this.http
-      .get<RootObject>('https://tasty.p.rapidapi.com/recipes/list?from=0&size=50&', {
+    return this.http.get<RootObject>('https://tasty.p.rapidapi.com/recipes/list?from=0&size=50&', {
         headers: this.headers,
         params: new HttpParams()
         .set("q", searchTerm)
@@ -28,7 +37,8 @@ export class SearchRecipesService {
         // using a dropbox that lists available tags, or by using checkboxes.
         .set("tags", "")
       })
-  };
+  }
+
 
 
 };

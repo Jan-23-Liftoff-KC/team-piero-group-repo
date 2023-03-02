@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
     }
   );
 
+  getUrl()
+{
+  return "url('assets/joanna-kosinska-i0IvwAhhGZM-unsplash.jpg')";
+}
+
   ngOnInit(): void {
   }
 

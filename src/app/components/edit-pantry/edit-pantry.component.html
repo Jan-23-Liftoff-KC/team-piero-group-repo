@@ -1,0 +1,16 @@
+<!-- <button (click)="addPantryItem('ingredient')">Call FB</button> -->
+
+
+<div>
+    Search: <input [(ngModel)]="pantrySearchTerm" type="text" (keyup.enter)="getRecipes()">
+    <button (click)="getRecipes()">Search</button>
+ </div><br>
+
+
+ <ng-container *ngIf="ingredients">
+    <ng-container *ngFor="let ingredient of ingredients; let i = index">
+        <div *ngIf="i < 10">
+            <button type="button" class="btn btn-primary" (click)="addPantryItem(ingredient)">{{ingredient}}</button><br><br>
+        </div>
+    </ng-container>
+ </ng-container> 
