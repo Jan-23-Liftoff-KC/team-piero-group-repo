@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HomeComponent,
     LoginComponent,
     PantryComponent,
+    RecipesComponent,
     RecipesComponent,
     FavoritesComponent,
     PageNotFoundComponent,
