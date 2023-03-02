@@ -31,7 +31,7 @@ export class SignupFormComponent implements OnInit {
       const user = userCredentials.user;
       const userId = user.uid;
       console.log(user);
-      this.matSnackBar.open(`Account created successfully!\nWelcome user: ${userId}`, "Close");
+      this.matSnackBar.open(`Account created successfully!\nWelcome user: ${userId}`, "CLOSE");
 
       firebase_service.createCollection("users/" + userId, [user.providerData[0]]);
       this.signupForm.reset();
