@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { firebase_service } from 'src/firebase/firebase.service';
+import {  Router } from '@angular/router';
+
 
 
 @Component({
-  selector: 'app-pantry',
-  templateUrl: './pantry.component.html',
-  styleUrls: ['./pantry.component.scss']
+  selector: 'edit-pantry',
+  templateUrl: './edit-pantry.component.html',
+  styleUrls: ['./edit-pantry.component.scss']
 })
-export class PantryComponent implements OnInit {
+export class EditPantryComponent implements OnInit {
 
   pantrySearchTerm = '';
+  pantrySearchCategory = '';
+
   ingredients;
   pantryCollection;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   headers = new HttpHeaders({
     'X-RapidAPI-Key': '7c74d55e43msh895d92d3174837fp19733djsn47065daa1688',
@@ -69,6 +73,10 @@ Press OK to remove it from your pantry.`)) {
       this.retrievePantry();
     };  
 
+  };
+
+  routeToPantry() {
+    this.router.navigate(["pantry"]);
   };
 
 }
