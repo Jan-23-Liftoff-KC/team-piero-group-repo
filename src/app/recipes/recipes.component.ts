@@ -4,6 +4,8 @@ import { RootObject, Result } from 'src/app/interfaces/recipes';
 
 
 import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-recipe.component';
+import { User } from 'firebase/auth';
+import { auth } from 'src/firebase/firebase.init';
 
 @Component({
   selector: 'app-recipes',
@@ -12,7 +14,7 @@ import { ChildSearchRecipeComponent } from '../child-search-recipe/child-search-
   styleUrls: ['./recipes.component.scss']
 })
 
-export class RecipesComponent{
+export class RecipesComponent implements OnInit {
 
   recipes;
   recipesString;
@@ -29,8 +31,20 @@ export class RecipesComponent{
   filtered: object[] = [];
   storedRecipes;
 
+  user: User = null;
+  user_id: string = null;
+
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService) {  } 
+
+  ngOnInit(): void {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        this.user = user;
+        this.user_id = user.uid;
+      }
+    });
+  }
 
   
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
