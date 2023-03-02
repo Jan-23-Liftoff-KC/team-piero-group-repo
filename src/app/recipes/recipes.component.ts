@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchRecipesService } from 'src/app/services/search-recipes.service';
+import { User } from 'firebase/auth';
+import { auth } from 'src/firebase/firebase.init';
 
 @Component({
   selector: 'app-recipes',
@@ -26,11 +28,21 @@ export class RecipesComponent implements OnInit{
   storedRecipes;
   thumbnailURL;
 
+  user: User = null;
+  user_id: string = null;
+
   //Creates a private instance of the searchRecipeService for use in this component
   constructor(private searchRecipeService: SearchRecipesService){} 
   
-  ngOnInit() {
+  ngOnInit(): void {
     this.recipes = this.searchRecipeService.sharedRecipes; //check for shared combinedRecipes from pantry.component to display
+
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        this.user = user;
+        this.user_id = user.uid;
+      }
+    });
    }
  
   //Function to query the API when the user submits a search term by clicking submit, or pressing 'Enter' key
