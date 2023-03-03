@@ -1,20 +1,25 @@
-<button (click)="routeToPantry();">Go Back To My Pantry</button><br><br>
+<div class="bg-cover">
 
-<div>
-    <label for="categories">Choose a category for your ingredient:</label>
-        <select [(ngModel)]="selectedCategory" name="categories" required>
-            <option *ngFor="let category of pantryCategories" value="{{category}}">{{category}}</option>
-        </select><br><br>
+    <button class="myButton" (click)="routeToPantry();">Go Back To My Pantry</button><br><br>
 
-    <input [(ngModel)]="pantrySearchTerm" type="text" (keyup.enter)="getRecipes()" placeholder="Ingredient Name">
-    <button (click)="getRecipes()">Search</button>
-</div><br>
+    <div class="container">
+        <label for="categories">Choose a category for your ingredient:</label>
+            <select [(ngModel)]="selectedCategory" name="categories" required>
+                <option *ngFor="let category of pantryCategories" value="{{category}}">{{category}}</option>
+            </select><br><br>
+
+        <input [(ngModel)]="pantrySearchTerm" type="text" (keyup.enter)="getRecipes()" placeholder="Ingredient Name">
+        <button class="myButton" (click)="getRecipes()">Search</button>
+    </div><br>
 
 
- <ng-container *ngIf="ingredients">
-    <ng-container *ngFor="let ingredient of ingredients; let i = index">
-        <div *ngIf="i < 10">
-            <button type="button" class="btn btn-primary" (click)="editPantryItem(ingredient)">{{ingredient}}</button><br><br>
+    <div *ngIf="ingredients">
+        <div *ngFor="let ingredient of ingredients; let i = index">
+            <div *ngIf="i < 10">
+                <button class="myButton" type="button" (click)="editPantryItem(ingredient)">{{ingredient}}</button><br><br>
+            </div>
         </div>
-    </ng-container>
- </ng-container> 
+    </div> 
+
+</div>
+
