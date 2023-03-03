@@ -1,15 +1,15 @@
 
-.column {
-    float: left;
-    width: 33%;
-  }
+// .column {
+//     float: left;
+//     width: 33%;
+//   }
   
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+//   /* Clear floats after the columns */
+//   .row:after {
+//     content: "";
+//     display: table;
+//     clear: both;
+//   }
 
 
   :root {
@@ -23,6 +23,7 @@
   
   .bg-cover {
     background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+    height: 100%;
   }
   
   .card {
@@ -68,6 +69,6 @@
   .heading{
     padding-top: 30px;
     margin: auto;
-    width: 25%;
+    width: 50%;
   }
           
